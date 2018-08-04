@@ -159,22 +159,25 @@ public class Mastermind extends Game {
 		codeToCompareTbl.retainAll(secretCodeTbl);
 		this.nbPresent = Math.abs(nbRightPlaced -codeToCompareTbl.size() );
 	}
+	public String answerToString() {
+		String answer = this.nbRightPlaced + " element(s) rigth placed, "+ this.nbPresent + " element(s) present";
+		return answer;
+	}
 
 	@Override
 	public void setHistoric(String code, String answer, int getHit) {
 		
-		int nbRigthPlaced =0;
+		int nbRightPlaced =0;
 		int nbPresent = 0;
 		if (this.challengerMode == true) {
-			nbRigthPlaced =this.nbRightPlaced;
+			nbRightPlaced =this.nbRightPlaced;
 			nbPresent = this.nbPresent;}
 		else {			
-			nbRigthPlaced =this.clueRightPlaced;
+			nbRightPlaced =this.clueRightPlaced;
 			nbPresent = this.clueElmentPresent;}
 		
 
-		historic.put(getHit, " : " + code + " // clues are " + nbRigthPlaced + " element(s) rigth placed, "
-				+ nbPresent + " element(s) present");
+		historic.put(getHit, " : " + code + " // clues are " + answer);
 
 	}
 

@@ -19,7 +19,8 @@ public class EntryException extends Exception {
 			System.out.println("\nENTRY NUMBER FORMAT EXCEPTION\nThis entry : " + str+" is not fully an integer\nYour ENTRY was set as null, please retry.\n" );
 		else if (i==3)
 			System.out.println("\nENTRY DUPLICATE FORMAT EXCEPTION\nThis entry : " + str+" contains duplicate which are not allowed in basis version \nYour ENTRY was set as null, please retry.\n" );
-	
+		else if (i==4)
+			System.out.println("\nENTRY RANGE EXCEPTION\nThis entry : " + str+" is not within the set range \nYour ENTRY was set as null, please retry.\n" );
 	}
 	
 	public EntryException(String str, String contains) {
@@ -31,7 +32,7 @@ public class EntryException extends Exception {
 		number.add("First");
 		number.add("Second");
 				
-			System.out.println(number.get(cheatCount-1)+" Cheating tentative detection, the third will be the last\n" );
+			System.out.println(number.get(cheatCount-1)+" Cheating tentative detection or entry error, the third will be the last\n" );
 		
 	}
 
