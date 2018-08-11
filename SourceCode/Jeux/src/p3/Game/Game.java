@@ -1,48 +1,50 @@
 package p3.Game;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.HashSet;
-import java.util.List;
+import java.util.LinkedHashMap;
+
 import java.util.Random;
 
-abstract class Game {
+abstract class Game extends GameParameters {
 
-	private int maxHit;
-	protected int minRange = 0;
-	protected int maxRange = 0;
-	protected int elementsNb = 0;
 	protected int hit = 0;
 	private String code = null;
 	private String opCode = null;
 	private String opProposal = null;
 	protected String pcProposal = null;
 	private String opEntry = null;
-	private String gameAnswer = null;
-	protected boolean basisVersion;
+	private String gameAnswer = null;	
 	protected boolean cheating;
 	protected boolean duplicate;
-	private boolean devmode;
-	protected boolean autoMode;
 	protected boolean challengerMode;
 	protected boolean cheatTentative;
-	private ArrayList<String> previousHit = new ArrayList<>();
+	private boolean valueCheckPass = true;
+	private ArrayList<String> previousHit = new ArrayList<>();	
 	protected ArrayList<String> historicChallengerTbl = new ArrayList<>();
 	protected ArrayList<String> historicDefenderTbl = new ArrayList<>();
-	protected boolean duelMode = false;
+	protected boolean duelMode = false;	
+	protected int maxHit = 0;
+	protected int minRange = 0;
+	private int minMinRange = 0;
+	private int maxMinRange = 8;
+	private int minMaxRange = 1;
+	private int maxMaxRange = 9;
+	protected int maxRange = 0;	
+	protected int elementsNb = 0;
+	protected boolean devMode;
+	protected boolean autoMode;
+	protected boolean variantVersion;
+	private String parameterKey = null;
+	private String parameterCheck = null;
+	private String parameterDefaultValue = null;
 
-	public Game() {
+	public Game() throws IOException, EntryException {
 
-		this.setMinRange(0);
-		this.setMaxRange(9);
-		this.setElementsNb(4);
-		this.setMaxHit(20);
-		this.challengerMode = true;
-		this.duplicate = false;
-		this.autoMode = false;
-		this.devmode = true;
-		this.cheating = false;
-
+		checkParameters();
 	}
 
 	public boolean isChallengerMode() {
@@ -78,37 +80,27 @@ abstract class Game {
 	}
 
 	public boolean isDevmode() {
-		return devmode;
+		return devMode;
 	}
 
-	public void setDevmode(int mode) {
-		if (mode == 1)
-			this.devmode = true;
-		else
-			this.devmode = false;
+	public void setDevmode(boolean devMode) {
+		this.devMode = devMode;
 	}
 
 	public boolean isAutoMode() {
 		return autoMode;
 	}
 
-	public void setAutoMode(int mode) {
-		if (mode == 1)
-			this.autoMode = true;
-		else
-			this.autoMode = false;
-
+	public void setAutoMode(boolean autoMode) {
+		this.autoMode = autoMode;
 	}
 
-	public boolean isBasisVersion() {
-		return basisVersion;
+	public boolean isVariantVersion() {
+		return variantVersion;
 	}
 
-	public void setVersion(int version) {
-		if (version == 1) {
-			this.basisVersion = true;
-		} else
-			this.basisVersion = false;
+	public void setVariantVersion(boolean variantVersion) {
+		this.variantVersion = variantVersion;
 	}
 
 	public boolean isCheating() {
@@ -128,7 +120,6 @@ abstract class Game {
 	}
 
 	public void setMaxRange(int maxRange) {
-		System.out.println("Set Max range(min=1 max=9): Fixed for test at 9");
 		this.maxRange = maxRange;
 	}
 
@@ -137,7 +128,6 @@ abstract class Game {
 	}
 
 	public void setMinRange(int maxRange) {
-		System.out.println("Set Min range(min=0 max=8): Fixed for test at 0");
 		this.minRange = maxRange;
 	}
 
@@ -149,7 +139,7 @@ abstract class Game {
 		String codetoCheck = null;
 		Code code = new Code(minRange, maxRange, elementsNb);
 		if (challengerMode == true) {
-			if (this.basisVersion == true) {
+			if (this.variantVersion == false) {
 				do {
 					Code basiscode = new Code(minRange, maxRange, elementsNb);
 					codetoCheck = basiscode.toString();
@@ -205,11 +195,10 @@ abstract class Game {
 	}
 
 	public int getMaxHit() {
-		return maxHit;
+		return this.maxHit;
 	}
 
 	public void setMaxHit(int maxHit) {
-		System.out.println("Set maximum hit Fixed at 20 for test");
 		this.maxHit = maxHit;
 
 	}
@@ -231,7 +220,7 @@ abstract class Game {
 		ArrayList<String> askOpPrpoposition = new ArrayList<>();
 		askOpPrpoposition.add("\nPlayer as Challenger");
 		askOpPrpoposition.add(question);
-		if (isDevmode() == true)
+		if (this.devMode == true)
 			askOpPrpoposition.add("(The Secret Code is : " + secretcode + ")");
 		askOpPrpoposition.forEach(elmt -> System.out.println(elmt));
 	}
@@ -388,9 +377,6 @@ abstract class Game {
 	}
 
 	public void setElementsNb(int elementsNb) {
-
-		System.out.println("Set elements number composing code(<= Max Range+1(Max range setted =" + maxRange
-				+ ")): Fixed for test at 4");
 		this.elementsNb = elementsNb;
 	}
 
@@ -459,9 +445,9 @@ abstract class Game {
 		if (entry == null)
 			this.opEntry = entry;
 		else {
-			boolean rangeCheck = entry.matches("[" + minRange + "-" + maxRange + "]{" + entry.length() + "}");
+			boolean RangeCheck = entry.matches("[" + minRange + "-" + maxRange + "]{" + entry.length() + "}");
 			try {
-				if (rangeCheck == false)
+				if (RangeCheck == false)
 					throw new EntryException(entry, 4);
 			} catch (EntryException e) {
 				pass = false;
@@ -479,7 +465,7 @@ abstract class Game {
 			this.opEntry = entry;
 		else {
 			try {
-				if (this.basisVersion == true)
+				if (this.variantVersion == false)
 					avoidDuplicate(entry, entry.length());
 				if (duplicate == true)
 					throw new EntryException(opEntry, 3);
@@ -493,10 +479,12 @@ abstract class Game {
 		}
 	}
 
+	// TODO All entry check replace value by a booleanand change condition while in main
+	// value
 	public void entryContentsCheck(String entry, String contains) {
 		// System.out.println(moreLess.getOpcodeEntry().matches("[[+][-][=]]+"));// n
 		// est accepter que les string ave des +-=, - entre crochet car considerer come
-		// la marque qui indique le range
+		// la marque qui indique le Range
 		boolean pass = true;
 		if (entry == null)
 			this.opEntry = entry;
@@ -517,6 +505,127 @@ abstract class Game {
 			else
 				this.opEntry = entry;
 		}
+	}
+	public int stringToInteger(String str) {
+		int integer = Integer.parseInt(str);
+		return integer;
+	}
+	
+	public boolean booleanConverter(String str) {
+	String itsTrue = "true";
+	boolean bool = itsTrue.equals(str);
+	return bool;
+	}
+	
+	public String getProperty(String key) {
+		String value = properties.getProperty(key);
+		return value;
+	}
+	public void valueRangeCheck(String valueToSet, int minParameter, int maxParameter) {
+		int value = stringToInteger(valueToSet);
+		if (value < minParameter || value > maxParameter)
+			this.valueCheckPass = false;
+		else
+			this.valueCheckPass = true;
+			
+	}
+
+	public void valueIntegerCheck(String valueToSet) {
+		boolean digitOnly = valueToSet.matches("[0-9]{" + valueToSet.length() + "}");
+		if (digitOnly == false)
+			this.valueCheckPass = false;
+		else
+			this.valueCheckPass = true;
+	}
+
+	public void valueBooleanCheck(String booleanValue) {
+		boolean itsTrue = booleanValue.equalsIgnoreCase("true");
+		boolean itsFalse = booleanValue.equalsIgnoreCase("false");
+		if (itsTrue == true || itsFalse == true)
+			this.valueCheckPass = true;
+		else
+			this.valueCheckPass = false;
+
+	}
+
+	public void setParametersInfo(int parametersTableIndice) {
+		setDefaultGamevalue();
+		this.parameterKey = parametersTxtKeys.get(parametersTableIndice);
+		this.parameterCheck = getProperty(this.parameterKey);
+		this.parameterDefaultValue = this.defaultValue.get(parametersTableIndice);
+	}
+
+	public void checkParameters() {
+		ArrayList<Integer> indiceList = new ArrayList<>();
+		indiceList.add(0);
+		indiceList.add(5);
+		indiceList.add(6);
+		for (int i = 0; i < indiceList.size(); i++) {
+			setParametersInfo(indiceList.get(i));
+			valueBooleanCheck(this.parameterCheck);
+			try {
+				if (this.valueCheckPass == false)
+					throw new EntryException(this.parameterKey, parameterCheck, 0);
+			} catch (EntryException e0) {
+				writeConfiguration(this.parameterKey, parameterDefaultValue);
+			}
+		}
+		indiceList.clear();
+		indiceList.add(1);
+		indiceList.add(2);
+		indiceList.add(3);
+		indiceList.add(4);
+		for (int i = 0; i < indiceList.size(); i++) {
+			setParametersInfo(indiceList.get(i));
+			valueIntegerCheck(this.parameterCheck);
+			try {
+				if (this.valueCheckPass == false)
+					throw new EntryException(this.parameterKey, parameterCheck, 1);
+			} catch (EntryException e1) {
+				writeConfiguration(this.parameterKey, parameterDefaultValue);
+			}
+		}
+		indiceList.clear();	
+		//after parameter type check load parameters to check value
+		setGameParameters();		
+		try {
+			setParametersInfo(1);			
+			valueRangeCheck(parameterCheck, this.minMinRange,this.maxMinRange);			
+			if (this.valueCheckPass == false || stringToInteger(this.parameterCheck)>= this.maxRange)
+				throw new EntryException(parameterKey,parameterCheck, this.minMinRange, this.maxMinRange, 0);
+		} catch (EntryException e2) {			
+			writeConfiguration(this.parameterKey, parameterDefaultValue);
+		}
+		try {
+			setParametersInfo(2);			
+			valueRangeCheck(parameterCheck, this.minMaxRange,this.maxMaxRange);			
+			if (this.valueCheckPass == false || stringToInteger(this.parameterCheck) <= this.minRange)
+				throw new EntryException(parameterKey,parameterCheck, this.minMaxRange, this.maxMaxRange, 1);
+		} catch (EntryException e3) {			
+			writeConfiguration(this.parameterKey, this.parameterDefaultValue);
+		}		
+		try {
+			setParametersInfo(3);			
+			if(stringToInteger(parameterCheck)>this.maxRange&&this.isVariantVersion()==false)			
+				throw new EntryException(parameterKey,parameterCheck, 2);
+		} catch (EntryException e4) {
+			setParametersInfo(0);
+			writeConfiguration(this.parameterKey, "true");
+		}
+		//after check load correction
+		setGameParameters();
+	}
+
+	public void setGameParameters() {
+		
+		setVariantVersion(booleanConverter(getProperty(parametersTxtKeys.get(0))));
+		setMinRange(stringToInteger(getProperty(parametersTxtKeys.get(1))));
+		setMaxRange(stringToInteger(getProperty(parametersTxtKeys.get(2))));
+		setElementsNb(stringToInteger(getProperty(parametersTxtKeys.get(3))));
+		setMaxHit(stringToInteger(getProperty(parametersTxtKeys.get(4))));
+		setDevmode(booleanConverter(getProperty(parametersTxtKeys.get(5))));
+		setAutoMode(booleanConverter(getProperty(parametersTxtKeys.get(6))));
+
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------

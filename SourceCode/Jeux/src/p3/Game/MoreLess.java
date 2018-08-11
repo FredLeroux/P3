@@ -1,6 +1,6 @@
 package p3.Game;
 
-
+import java.io.IOException;
 
 class MoreLess extends Game {	
 	private int cheatCount = 0;
@@ -8,7 +8,7 @@ class MoreLess extends Game {
 	private StringBuilder moreLessAnswer;
 	
 
-	public MoreLess() {		
+	public MoreLess() throws IOException,EntryException {		
 		this.mLClues = null;
 		this.moreLessAnswer = new StringBuilder();
 		historicChallengerTbl.clear();

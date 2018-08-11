@@ -1,35 +1,59 @@
 package p3.Game;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
-
+//TODO JAVADOC
+//TODO Clean and classified all methode
+	//TODO methode to check integrity config.prop
+	//TODO metyhode display defaukt value
+	//TODO methode repaire config properties
 	public static boolean codeCompareCheck = false;
 	public static boolean hitCheck = false;
 	public static Scanner entry = new Scanner(System.in);
 	public static int gameChoice;
 	public static int choice;
-
-	public static void main(String[] args) throws EntryException {
-
+	public static Configuration configInitial;
+	 
+	
+	public static void main(String[] args) throws EntryException, IOException {
+		
+		GameParameters gameConfiguration = new GameParameters();		
+		gameConfiguration.readConfiguration();
+		System.out.println("\n");
+		
+		
+		
+			
+		
+		
 		do {
+			
+			
+			
+			
 			System.out.println("1: More Less Game Challenger Mode");
 			System.out.println("2: Mastermind Game Challenger Mode");
 			System.out.println("3: More Less Game Defender Mode");
 			System.out.println("4: Mastermind Game Defender Mode");
 			System.out.println("5: More Less Game Duel Mode");
+			System.out.println("6: Configuration ");
 			System.out.println("Gamechoice ?");
 			gameChoice = entry.nextInt();
 
 			// --------------------------------------------------------------------------------------------------------------
 			if (gameChoice == 1) {
-
 				MoreLess moreLess = new MoreLess();
-
-				System.out.println("Select Version");
-				System.out.println("1: Basis");
-				System.out.println("2: Variante");
-				moreLess.setVersion(entry.nextInt());
+				
+				//moreLess.configurationCheck();
+				//System.out.println("maxhit set at : " + moreLess.getMaxHit());
+				//System.out.println("Select Version");
+				//System.out.println("1: Basis");
+				//System.out.println("2: Variante");
+				//moreLess.setVersion(entry.nextInt());
 				moreLess.setChallengerMode(1);
 				moreLess.setCode();
 
@@ -52,7 +76,6 @@ public class Main {
 					if (!moreLess.getOpProposal().equals(moreLess.getCode())) {
 						moreLess.setGameAnswer();
 						System.out.println(moreLess.getGameAnswer());
-
 					}
 					codeCompareCheck = (!moreLess.getOpProposal().equals(moreLess.getCode()));
 					hitCheck = moreLess.getHit() < moreLess.getMaxHit();
@@ -81,12 +104,13 @@ public class Main {
 			 */
 			// --------------------------------------------------------------------------------------------------------------
 			if (gameChoice == 3) {
-
-				MoreLess mLDefender = new MoreLess();
-				System.out.println("Select Version");
-				System.out.println("1: Basis");
-				System.out.println("2: Variante");
-				mLDefender.setVersion(entry.nextInt());
+				
+				MoreLess mLDefender = new MoreLess();				
+			
+				//System.out.println("Select Version");
+				//System.out.println("1: Basis");
+				///System.out.println("2: Variante");
+				//mLDefender.setVersion(entry.nextInt());
 				mLDefender.setChallengerMode(2);
 				do {
 					System.out.println("set your code");
@@ -134,7 +158,7 @@ public class Main {
 						;
 
 				} while (!(mLDefender.getPcProposal().equals(mLDefender.getOpCode()))
-						&& !(mLDefender.getHit() == mLDefender.getMaxHit()) && mLDefender.isCheating() == false);
+						&& /*!(mLDefender.getHit() == mLDefender.getMaxHit()) && */mLDefender.isCheating() == false);
 
 				mLDefender.Summary();
 
@@ -183,7 +207,7 @@ public class Main {
 				System.out.println("Select Version");
 				System.out.println("1: Basis");
 				System.out.println("2: Variante");
-				mLDuel.setVersion(entry.nextInt());
+				//mLDuel.setVariantVersion(entry.nextInt());();
 				mLDuel.setDuelMode(1);
 				mLDuel.setChallengerMode(1);
 				mLDuel.setCode();
@@ -258,7 +282,26 @@ public class Main {
 
 				mLDuel.Summary();
 			}
-
+			// -----------------------------------------------------------------------------------------------------------------------------------------------------
+			
+			if(gameChoice==6) {
+				
+				gameConfiguration.readConfiguration();
+				
+				System.out.println("Configurable parameters list:\n");				
+				gameConfiguration.parametersList();				
+				do {
+				System.out.println("\nWhat is the parameter you would like to change?");
+				gameConfiguration.setKeyToSet(entry.nextInt());
+				gameConfiguration.optionNumberCheck(gameConfiguration.getKeyToSet(), gameConfiguration.getConfigElements().size());
+				}while (gameConfiguration.getKeyToSet()==0);
+				do {
+				System.out.println("what is the value you want set on "+gameConfiguration.getConfigElements().get(gameConfiguration.getKeyToSet())+" parameter" );
+				
+				gameConfiguration.setValueToSet(entry.next());
+				gameConfiguration.saveConfiguration();
+				}while(gameConfiguration.getValueToSet()==null);
+			}
 			// -----------------------------------------------------------------------------------------------------------------------------------------------------
 			System.out.println("1: Replay");
 			System.out.println("2: Quit");
