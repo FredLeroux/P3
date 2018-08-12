@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 public class GameParameters extends Configuration {
 	private  LinkedHashMap <String,String> gameParameters;
-	protected ArrayList<String> defaultValue =new ArrayList<>();
+	
 	
 	
 	
@@ -18,19 +18,18 @@ public class GameParameters extends Configuration {
 		gameParameters.put("Variant Version","false");
 		gameParameters.put("Digits Minimum Range","0");
 		gameParameters.put("Digits Maximum Range","9");
-		gameParameters.put("Element(s) Number Composing Secre Code","4");
+		gameParameters.put("Element(s) Number Composing Secret Code","4");
 		gameParameters.put("Maximum Hit Attributed","20");
 		gameParameters.put("Developper Mode","false");
-		gameParameters.put("Defender Auto Mode","false");
+		gameParameters.put("Defender Auto Mode","false");		
 		setParamatersList(gameParameters);
-		createParameterKeysList(gameParameters);		
+		createParameterKeysList(gameParameters);
+		setDefaultGamevalue(gameParameters);
+		readConfiguration();
 		
 	}
 	
-	public void setDefaultGamevalue() {		
-		gameParameters.forEach((key,value)-> defaultValue.add(value));
-		
-	}
+	
 	
 
 }

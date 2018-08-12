@@ -17,23 +17,31 @@ import java.util.Properties;
 
 
 
-public class Configuration {
+abstract class Configuration {
 
 	private int keyToSet;
 	private String configFile;
 	private String valueToSet;
 	private LinkedHashMap<Integer, String> configElements;
 	private LinkedHashMap<String, String> paramaters;
-	protected Properties properties;
+	protected  Properties properties= new Properties();
 	protected ArrayList <String> parametersTxtKeys; 
+	protected ArrayList<String> defaultValue =new ArrayList<>();
+	protected String parameterKey = null;
+	protected String parameterCurrentValue = null;
+	protected String parameterDefaultValue = null;
+	protected boolean valueCheckPass = true;
+	
+	
 	public Configuration() {
 		this.keyToSet = 0;
 		this.configFile = "config.properties";
 		this.valueToSet = null;
 		this.configElements = new LinkedHashMap<>();
 		this.paramaters = new LinkedHashMap<>();
-		this.properties = new Properties();
+		//this.properties 
 		this.parametersTxtKeys= new ArrayList <>();
+		this.parameterCurrentValue = null;
 	}
 
 	public HashMap<String, String> getParamaters() {
@@ -101,14 +109,14 @@ public class Configuration {
 			}
 		}
 		try {
-			properties.load(input);
+			this.properties.load(input);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}		
 		input.close();
 	}
 
-	public void createtxt(HashMap<String, String> parameters) throws IOException {
+	public void createtxt(LinkedHashMap<String, String> parameters) throws IOException {
 		FileWriter fw;
 		try {
 			fw = new FileWriter(new File(this.configFile));
@@ -157,5 +165,95 @@ public class Configuration {
 		else
 			this.keyToSet = keyToSet;
 	}
+	public boolean booleanConverter(String str) {
+		String itsTrue = "true";
+		boolean bool = itsTrue.equals(str);
+		return bool;
+		}
+		
+		public String getProperty(String key) {
+			String value = properties.getProperty(key);
+			return value;
+		}
+		
+		
+		public void setDefaultGamevalue(LinkedHashMap <String,String> parameters) {		
+			parameters.forEach((key,value)-> this.defaultValue.add(value));
+			
+		}
+	
+		
+		public void setParameterKey(int parametersTableIndice) {			
+			this.parameterKey =parametersTxtKeys.get(parametersTableIndice);
+		}
+		public void setParameterCurrentValue(int parametersTableIndice) {
+			this.parameterCurrentValue = getProperty(this.parameterKey);
+		}
+		public void setParameterDefaultValueValue(int parametersTableIndice) {
+			this.parameterDefaultValue = this.defaultValue.get(parametersTableIndice);
+		}
 
+		public String getParameterKey() {
+			return parameterKey;
+		}
+
+		
+
+		public String getParameterCurrentValue() {
+			return parameterCurrentValue;
+		}
+
+		
+
+		public String getParameterDefaultValue() {
+			return parameterDefaultValue;
+		}
+public void displayDefaultValue() {
+	this.paramaters.forEach((key,value)->System.out.println("parameter : "+key.replaceAll(" ", "_")+" -> Default value= "+value));
+}
+
+public void displayCurrentValue() {
+	ArrayList <String> currentParameters = new ArrayList<>();
+	for(int i= 0;i<this.paramaters.size();i++) {
+		setParameterKey(i);
+		setParameterCurrentValue(i);
+		currentParameters.add("parameter : "+this.parameterKey+" -> Default value= "+this.parameterCurrentValue);		
+	}
+	currentParameters.forEach(string->System.out.println(string));
+}
+public int stringToInteger(String str) {
+	int integer = Integer.parseInt(str);
+	return integer;
+}
+
+
+public void valueRangeCheck(String valueToSet, int minParameter, int maxParameter) {	
+	int value = stringToInteger(valueToSet);
+	if (value < minParameter || value > maxParameter)
+		
+		this.valueCheckPass = false;
+	else
+		this.valueCheckPass = true;
+		
+}
+
+public void valueIntegerCheck(String valueToSet) {
+	boolean digitOnly = valueToSet.matches("[0-9]{" + valueToSet.length() + "}");
+	if (digitOnly == false)
+		this.valueCheckPass = false;
+	else
+		this.valueCheckPass = true;
+}
+
+public void valueBooleanCheck(String booleanValue) {
+	boolean itsTrue = booleanValue.equalsIgnoreCase("true");
+	boolean itsFalse = booleanValue.equalsIgnoreCase("false");
+	if (itsTrue == true || itsFalse == true)
+		this.valueCheckPass = true;
+	else
+		this.valueCheckPass = false;
+
+}		
+		
+		
 }
