@@ -92,7 +92,7 @@ class MoreLess extends Game {
 		String answer = null;
 
 		if (cheatTentative == true && cheatCount > 0 || cheating == true) {
-			comment = "(Cheating tentative or entry error).";
+			comment = "(Player cheating tentative or entry error).";
 			answer = this.mLClues;
 		} else {
 			comment = " .";

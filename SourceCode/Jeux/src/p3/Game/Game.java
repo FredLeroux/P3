@@ -1,7 +1,6 @@
 
 package p3.Game;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,42 +17,37 @@ abstract class Game extends GameParameters {
 	private String opProposal = null;
 	protected String pcProposal = null;
 	private String opEntry = null;
-	private String gameAnswer = null;	
+	private String gameAnswer = null;
 	protected boolean cheating;
 	protected boolean duplicate;
 	protected boolean challengerMode;
-	protected boolean cheatTentative;
+	protected boolean cheatTentative =false;
 	private boolean valueCheckPass = true;
-	private ArrayList<String> previousHit = new ArrayList<>();	
+	private ArrayList<String> previousHit = new ArrayList<>();
 	protected ArrayList<String> historicChallengerTbl = new ArrayList<>();
 	protected ArrayList<String> historicDefenderTbl = new ArrayList<>();
-	protected boolean duelMode = false;	
+	protected boolean duelMode = false;
 	protected int maxHit = 0;
 	protected int minRange = 0;
 	private int minMinRange = 0;
 	private int maxMinRange = 8;
 	private int minMaxRange = 1;
 	private int maxMaxRange = 9;
-	private int[] booleanIndiceList = {0,5,6};
-	private int[] IntegerIndiceList = {1,2,3,4};
-	protected int maxRange = 0;	
+	private int[] booleanIndiceList = { 0, 5, 6 };
+	private int[] IntegerIndiceList = { 1, 2, 3, 4 };
+	protected int maxRange = 0;
 	protected int elementsNb = 0;
 	protected boolean devMode;
 	protected boolean autoMode;
 	protected boolean variantVersion;
-	
 
+	public Game() throws IOException, EntryException {
 
-public Game() throws IOException, EntryException {
-		
-		
 		checkParametersBooleanType(booleanIndiceList);
-		checkParametersIntegerType(IntegerIndiceList);		
+		checkParametersIntegerType(IntegerIndiceList);
 		checkParamatersSpecificValue(1, 2, 3);
-		
-	}
-	
 
+	}
 
 	public boolean isChallengerMode() {
 		return challengerMode;
@@ -67,7 +61,7 @@ public Game() throws IOException, EntryException {
 	public void setDuelMode(int mode) {
 		if (mode == 1)
 			this.duelMode = true;
-		if (mode == 2)
+		if (mode == 0)
 			this.duelMode = false;
 	}
 
@@ -83,7 +77,7 @@ public Game() throws IOException, EntryException {
 	public void setChallengerMode(int mode) {
 		if (mode == 1)
 			this.challengerMode = true;
-		if (mode == 2)
+		if (mode == 0)
 			this.challengerMode = false;
 	}
 
@@ -301,7 +295,7 @@ public Game() throws IOException, EntryException {
 			setChallengerMode(1);
 			setPreviousHit("\nPlayer Gamme Summary");
 			tableDisplay(getPreviousHit());
-			setChallengerMode(2);
+			setChallengerMode(0);
 			setPreviousHit("\nPc Gamme Summary");
 			tableDisplay(getPreviousHit());
 		}
@@ -318,19 +312,59 @@ public Game() throws IOException, EntryException {
 
 	public void setGameAnswer() {
 
-		if (challengerMode == true) {
-
+		if (challengerMode == true) {	
+			if (opProposal.equals(code))
+				this.gameAnswer="\nYOU MAY HAVE WIN\nIt seems that you have found the Pc secret code, lets check if Pc has found yours.";
+			else
 			this.gameAnswer = "\nSorry this is not the secret code\n" + (maxHit - (hit))
 					+ " tentative(s) remaining  on the " + maxHit + " initially attributed.\n";
 
 		} else {
-
 			this.gameAnswer = (maxHit - (hit)) + " tentative(s) left.\n";
-
 		}
 
 	}
+	public boolean codeEquivalenceCheck(String code,String codeToCompare) {
+		boolean equal = false;
+		boolean equality = code.equals(codeToCompare);
+		if(equality==true)
+			equal=true;
+		return equal;
+		
+	}
+	
+	public boolean hitCheck() {
+	boolean equal =false;
+	if(this.hit==this.maxHit)
+		equal=true;
+	return equal;	
+	}
+	
+	public boolean gameStatu() {
+		ArrayList<Boolean> gameStatuResults = new ArrayList<>();
+		boolean end = false;
+		boolean endItsTrue = false;
+		if (this.cheating == true)
+			end = true;
+		else {
+			gameStatuResults.add(hitCheck());
+			if (duelMode == true) {
+				gameStatuResults.add(codeEquivalenceCheck(this.opProposal, this.code));
+				gameStatuResults.add(codeEquivalenceCheck(this.opCode, this.pcProposal));
+			} else if (challengerMode == true)
+				gameStatuResults.add(codeEquivalenceCheck(this.opProposal, this.code));
+			else
+				gameStatuResults.add(codeEquivalenceCheck(this.opCode, this.pcProposal));
 
+			endItsTrue = gameStatuResults.contains(true);
+			if (endItsTrue == true)
+				end = true;
+		}
+		return end;
+
+	}
+	
+	
 	public void Conclusion() {
 		ArrayList<String> summary = new ArrayList<>();
 		String comment = null;
@@ -408,125 +442,108 @@ public Game() throws IOException, EntryException {
 		return randomNb;
 	}
 
-	public void entryCheckLength(String entry, int elementsNb) throws EntryException {
+	public boolean entryCheckLength(String entry, int elementsNb) throws EntryException {
 		// TODO Question is it better to add multiple try catch or only one try with
 		// multiple catch
-		if (entry == null)
-			this.opEntry = entry;
-		else {
-
-			boolean pass = true;
-			try {
-				if (entry.length() != elementsNb)
-					throw new EntryException(entry, 0);
-			} catch (EntryException e) {
-				pass = false;
-			}
-			if (pass == false)
-				this.opEntry = null;
-			else
-				this.opEntry = entry;
-		}
-	}
-
-	public void entryIntegerCheck(String entry) throws EntryException {
 		boolean pass = true;
-		if (entry == null)
-			this.opEntry = entry;
-		else {
-			boolean digitOnly = entry.matches("[0-9]{" + entry.length() + "}");
-			try {
-				if (digitOnly == false)
-					throw new EntryException(entry, 2);
-			} catch (EntryException e) {
-				pass = false;
-			}
-			if (pass == false)
-				this.opEntry = null;
-			else
-				this.opEntry = entry;
+		try {
+			if (entry.length() != elementsNb)
+				throw new EntryException(entry, 0);
+		} catch (EntryException e) {
+			pass = false;
 		}
+		return pass;
 	}
 
-	public void entryIntegerRangeCheck(String entry) throws EntryException {
+	public boolean entryIntegerCheck(String entry) throws EntryException {
 		boolean pass = true;
-		if (entry == null)
-			this.opEntry = entry;
-		else {
-			boolean RangeCheck = entry.matches("[" + minRange + "-" + maxRange + "]{" + entry.length() + "}");
-			try {
-				if (RangeCheck == false)
-					throw new EntryException(entry, 4);
-			} catch (EntryException e) {
-				pass = false;
-			}
-			if (pass == false)
-				this.opEntry = null;
-			else
-				this.opEntry = entry;
+
+		boolean digitOnly = entry.matches("[0-9]{" + entry.length() + "}");
+		try {
+			if (digitOnly == false)
+				throw new EntryException(entry, 2);
+		} catch (EntryException e) {
+			pass = false;
 		}
+		return pass;
+
 	}
 
-	public void entryDuplicateCheck(String entry) throws EntryException {
+	public boolean entryIntegerRangeCheck(String entry) throws EntryException {
 		boolean pass = true;
-		if (entry == null)
-			this.opEntry = entry;
-		else {
-			try {
-				if (this.variantVersion == false)
-					avoidDuplicate(entry, entry.length());
-				if (duplicate == true)
-					throw new EntryException(opEntry, 3);
-			} catch (EntryException e) {
-				pass = false;
-			}
-			if (pass == false)
-				this.opEntry = null;
-			else
-				this.opEntry = entry;
+		boolean RangeCheck = entry.matches("[" + minRange + "-" + maxRange + "]{" + entry.length() + "}");
+		try {
+			if (RangeCheck == false)
+				throw new EntryException(entry, 4);
+		} catch (EntryException e) {
+			pass = false;
 		}
+		return pass;
 	}
 
-	// TODO All entry check replace value by a booleanand change condition while in main
+	public boolean entryDuplicateCheck(String entry) throws EntryException {
+		boolean pass = true;
+		try {
+			if (this.variantVersion == false)
+				avoidDuplicate(entry, entry.length());
+			if (duplicate == true)
+				throw new EntryException(opEntry, 3);
+		} catch (EntryException e) {
+			pass = false;
+		}
+		return pass;
+	}
+
+	// TODO All entry check replace value by a booleanand change condition while in
+	// main
 	// value
-	public void entryContentsCheck(String entry, String contains) {
+	public boolean entryContentsCheck(String entry, String contains) throws EntryException {
 		// System.out.println(moreLess.getOpcodeEntry().matches("[[+][-][=]]+"));// n
 		// est accepter que les string ave des +-=, - entre crochet car considerer come
 		// la marque qui indique le Range
 		boolean pass = true;
-		if (entry == null)
-			this.opEntry = entry;
-		else {
-			StringBuilder regexSb = new StringBuilder();
-			for (int i = 0; i < contains.length(); i++) {
-				regexSb.append("[" + contains.charAt(i) + "]");
-			}
-			boolean containsOnly = entry.matches("[" + regexSb.toString() + "]{" + entry.length() + "}");
-			try {
-				if (containsOnly == false)
-					throw new EntryException(entry, contains);
-			} catch (EntryException e) {
-				pass = false;
-			}
-			if (pass == false)
-				this.opEntry = null;
-			else
-				this.opEntry = entry;
+
+		StringBuilder regexSb = new StringBuilder();
+		for (int i = 0; i < contains.length(); i++) {
+			regexSb.append("[" + contains.charAt(i) + "]");
 		}
+		boolean containsOnly = entry.matches("[" + regexSb.toString() + "]{" + entry.length() + "}");
+		try {
+			if (containsOnly == false)
+				throw new EntryException(entry, contains);
+		} catch (EntryException e) {
+			pass = false;
+		}
+		return pass;
 	}
-	
+
+	public boolean opEntryCheck() throws EntryException {
+		ArrayList<Boolean> testresults = new ArrayList<>();
+		
+		boolean pass = true;		
+			testresults.add(entryCheckLength(this.opEntry, this.elementsNb));
+			testresults.add(entryIntegerCheck(this.opEntry));
+			if(this.challengerMode==false) {
+			testresults.add(entryDuplicateCheck(this.opEntry));
+			testresults.add(entryIntegerRangeCheck(this.opEntry));}
+			
+		boolean failed = testresults.contains(false);
+		if (failed==true)
+			pass = false;
+
+		return pass;
+	}
 
 	public void setParametersInfo(int paramatersTableIndice) {
 		setParameterKey(paramatersTableIndice);
 		setParameterCurrentValue(paramatersTableIndice);
 		setParameterDefaultValueValue(paramatersTableIndice);
 	}
-	
 
-	public void checkParametersBooleanType(int[] indiceList) {	
-			
+	public void checkParametersBooleanType(int[] indiceList) {
+
 		for (int i = 0; i < indiceList.length; i++) {
-			setParametersInfo(indiceList[i]);			
+			setParametersInfo(indiceList[i]);
 			valueBooleanCheck(this.parameterCurrentValue);
 			try {
 				if (this.valueCheckPass == false)
@@ -534,10 +551,12 @@ public Game() throws IOException, EntryException {
 			} catch (EntryException e0) {
 				writeConfiguration(this.parameterKey, parameterDefaultValue);
 			}
-		}}
-	public void checkParametersIntegerType(int[] indiceList) {	
-			
-		for (int i = 0; i <  indiceList.length; i++) {
+		}
+	}
+
+	public void checkParametersIntegerType(int[] indiceList) {
+
+		for (int i = 0; i < indiceList.length; i++) {
 			setParametersInfo(indiceList[i]);
 			valueIntegerCheck(this.parameterCurrentValue);
 			try {
@@ -548,44 +567,41 @@ public Game() throws IOException, EntryException {
 			}
 		}
 	}
-	
-	
-	
-	
-		public void checkParamatersSpecificValue(int minRangeIndice, int maxRangeIndice, int elementsNbIndice) {
-			//TODO Find a better way to treat this specific case
-			//load parameters to check validity
-			setGameParameters();
+
+	public void checkParamatersSpecificValue(int minRangeIndice, int maxRangeIndice, int elementsNbIndice) {
+		// TODO Find a better way to treat this specific case
+		// load parameters to check validity
+		setGameParameters();
 		try {
-			setParametersInfo(minRangeIndice);			
-			valueRangeCheck(parameterCurrentValue, this.minMinRange,this.maxMinRange);			
-			if (this.valueCheckPass == false || stringToInteger(this.parameterCurrentValue)>= this.maxRange)
-				throw new EntryException(parameterKey,parameterCurrentValue, this.minMinRange, this.maxMinRange, 0);
-		} catch (EntryException e2) {			
+			setParametersInfo(minRangeIndice);
+			valueRangeCheck(parameterCurrentValue, this.minMinRange, this.maxMinRange);
+			if (this.valueCheckPass == false || stringToInteger(this.parameterCurrentValue) >= this.maxRange)
+				throw new EntryException(parameterKey, parameterCurrentValue, this.minMinRange, this.maxMinRange, 0);
+		} catch (EntryException e2) {
 			writeConfiguration(this.parameterKey, parameterDefaultValue);
 		}
 		try {
-			setParametersInfo(maxRangeIndice);			
-			valueRangeCheck(parameterCurrentValue, this.minMaxRange,this.maxMaxRange);			
+			setParametersInfo(maxRangeIndice);
+			valueRangeCheck(parameterCurrentValue, this.minMaxRange, this.maxMaxRange);
 			if (this.valueCheckPass == false || stringToInteger(this.parameterCurrentValue) <= this.minRange)
-				throw new EntryException(parameterKey,parameterCurrentValue, this.minMaxRange, this.maxMaxRange, 1);
-		} catch (EntryException e3) {			
+				throw new EntryException(parameterKey, parameterCurrentValue, this.minMaxRange, this.maxMaxRange, 1);
+		} catch (EntryException e3) {
 			writeConfiguration(this.parameterKey, this.parameterDefaultValue);
-		}		
+		}
 		try {
-			setParametersInfo(elementsNbIndice);			
-			if(stringToInteger(parameterCurrentValue)>this.maxRange&&this.isVariantVersion()==false)			
-				throw new EntryException(parameterKey,parameterCurrentValue, 2);
+			setParametersInfo(elementsNbIndice);
+			if (stringToInteger(parameterCurrentValue) > this.maxRange && this.isVariantVersion() == false)
+				throw new EntryException(parameterKey, parameterCurrentValue, 2);
 		} catch (EntryException e4) {
 			setParametersInfo(0);
 			writeConfiguration(this.parameterKey, "true");
 		}
-		//after check load correction if necessary
+		// after check load correction if necessary
 		setGameParameters();
 	}
 
 	public void setGameParameters() {
-		
+
 		setVariantVersion(booleanConverter(getProperty(parametersTxtKeys.get(0))));
 		setMinRange(stringToInteger(getProperty(parametersTxtKeys.get(1))));
 		setMaxRange(stringToInteger(getProperty(parametersTxtKeys.get(2))));

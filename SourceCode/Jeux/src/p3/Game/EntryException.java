@@ -4,8 +4,8 @@ package p3.Game;
 import java.util.ArrayList;
 
 public class EntryException extends Exception {
-	private final String retry = "\nYour ENTRY was set as null, please retry.\n";
-	private final String retry1 = "\nThe value was set to default.\n";
+	private final String retry = "\nPlease retry.\n";
+	private final String retry1 = "\nThe parameter(s) value(s) was set to default.\n";
 
 	public EntryException() {
 		System.out.println("\nENTRY EXCEPTION\n");
@@ -17,6 +17,8 @@ public class EntryException extends Exception {
 		System.out.println("Default values :");
 
 	}
+	
+
 
 	public EntryException(String str, int i) {
 		if (i == 0)
@@ -34,6 +36,9 @@ public class EntryException extends Exception {
 		else if (i == 4)
 			System.out
 					.println("\nENTRY RANGE EXCEPTION\nThis entry : " + str + " is not within the set range " + retry);
+		else if(i==5)
+			System.out
+			.println("\nCONFIG.PROPERTIES EXCEPTION\n" + str + "\nCorrection done" + retry1);
 
 	}
 

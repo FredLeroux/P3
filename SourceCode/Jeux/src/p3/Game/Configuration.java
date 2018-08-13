@@ -1,6 +1,5 @@
 package p3.Game;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,8 +14,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Properties;
 
-
-
 abstract class Configuration {
 
 	private int keyToSet;
@@ -24,23 +21,22 @@ abstract class Configuration {
 	private String valueToSet;
 	private LinkedHashMap<Integer, String> configElements;
 	private LinkedHashMap<String, String> paramaters;
-	protected  Properties properties= new Properties();
-	protected ArrayList <String> parametersTxtKeys; 
-	protected ArrayList<String> defaultValue =new ArrayList<>();
+	protected Properties properties;
+	protected ArrayList<String> parametersTxtKeys;
+	protected ArrayList<String> defaultValue = new ArrayList<>();
 	protected String parameterKey = null;
 	protected String parameterCurrentValue = null;
 	protected String parameterDefaultValue = null;
 	protected boolean valueCheckPass = true;
-	
-	
+
 	public Configuration() {
 		this.keyToSet = 0;
 		this.configFile = "config.properties";
 		this.valueToSet = null;
 		this.configElements = new LinkedHashMap<>();
 		this.paramaters = new LinkedHashMap<>();
-		//this.properties 
-		this.parametersTxtKeys= new ArrayList <>();
+		this.properties = new Properties();
+		this.parametersTxtKeys = new ArrayList<>();
 		this.parameterCurrentValue = null;
 	}
 
@@ -67,11 +63,12 @@ abstract class Configuration {
 			this.configElements.put(i + 1, keyList.get(i));
 		this.configElements.forEach((key, value) -> System.out.println(key + ":" + value));
 	}
-	public void createParameterKeysList(HashMap<String,String> parameters) {
-		
-		ArrayList <String> keyset = new ArrayList <>();
+
+	public void createParameterKeysList(HashMap<String, String> parameters) {
+
+		ArrayList<String> keyset = new ArrayList<>();
 		keyset.addAll(parameters.keySet());
-		keyset.forEach(string->this.parametersTxtKeys.add(string.replaceAll(" ", "_")));
+		keyset.forEach(string -> this.parametersTxtKeys.add(string.replaceAll(" ", "_")));
 	}
 
 	public int getKeyToSet() {
@@ -93,42 +90,93 @@ abstract class Configuration {
 	public void readConfiguration() throws IOException, FileNotFoundException, EntryException {
 		boolean pass = true;
 		InputStream input = null;
-
+		InputStream input1 = null;
 		try {
 			input = new FileInputStream(this.configFile);
 		} catch (FileNotFoundException fne) {
 			pass = false;
-		} finally {
-			try {
-				if (pass == false)
-					throw new EntryException(new FileNotFoundException());
-			} catch (EntryException e) {
-				createtxt(this.paramaters);
-				displayParameters();
-				input = new FileInputStream(configFile);
-			}
 		}
+		try {
+			if (pass == false)
+				throw new EntryException(new FileNotFoundException());
+		} catch (EntryException e0) {
+			createtxt();
+			storeDefaultValue(this.paramaters);
+			displayParameters();
+			input = new FileInputStream(configFile);
+		}
+
 		try {
 			this.properties.load(input);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		}
 		input.close();
+		
+		try {
+
+			boolean integrity = integrityCheck();			
+			if (integrity == false) {
+				throw new EntryException("Compromised File Integrity", 5);
+			}
+		} catch (EntryException e1) {
+			storeDefaultValue(this.paramaters);			
+			try {
+				input1 = new FileInputStream(this.configFile);
+				this.properties.load(input1);
+			} catch (IOException e) {
+				e.printStackTrace();				
+				input1.close();
+			}
+		}
+		
 	}
 
-	public void createtxt(LinkedHashMap<String, String> parameters) throws IOException {
+	public void createtxt() throws IOException {
 		FileWriter fw;
 		try {
 			fw = new FileWriter(new File(this.configFile));
-			PrintWriter table;
-			table = new PrintWriter(new File(this.configFile));
-			parameters.forEach((key, defaultvalue) -> table.println(key.replaceAll(" ", "_") + "=" + defaultvalue));
-			table.close();
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void storeDefaultValue(LinkedHashMap<String, String> parameters) throws FileNotFoundException {
+		PrintWriter table;
+		try {
+			table = new PrintWriter(new File(this.configFile));
+			parameters.forEach((key, defaultvalue) -> table.println(key.replaceAll(" ", "_") + "=" + defaultvalue));
+			table.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean integrityCheck() {
+		boolean pass = true;
+		ArrayList<Object> integrity = new ArrayList<>();
+		HashMap<Object, Object> propertiesTable = new HashMap<>();
+		this.properties.forEach((key, value) -> propertiesTable.put(key, value));
+		integrity.addAll(propertiesTable.keySet());
+		
+		if (integrity.size() != this.parametersTxtKeys.size())
+
+			pass = false;
+		else {
+			int wrong = 0;
+			for (int i = 0; i < this.parametersTxtKeys.size(); i++) {
+				String toCheck = integrity.get(i).toString().replaceAll("=", "");
+				if (!this.parametersTxtKeys.contains(toCheck)||properties.getProperty(parametersTxtKeys.get(i)).isEmpty()) {					
+					wrong++;}
+			}
+
+			if (wrong > 0)
+				pass = false;
+
+		}
+		return pass;
 	}
 
 	public void writeConfiguration(String key, String value) {
@@ -152,7 +200,7 @@ abstract class Configuration {
 			writeConfiguration(key.replaceAll(" ", "_"), value);
 	}
 
-	public void optionNumberCheck(int keyToSet, int optionsNumber) {
+	public boolean optionNumberCheck(int keyToSet, int optionsNumber) {
 		boolean pass = true;
 		try {
 			if (keyToSet < 1 || keyToSet > optionsNumber)
@@ -160,100 +208,95 @@ abstract class Configuration {
 		} catch (EntryException e) {
 			pass = false;
 		}
-		if (pass == false)
-			this.keyToSet = 0;
-		else
-			this.keyToSet = keyToSet;
+		return pass;
 	}
+
 	public boolean booleanConverter(String str) {
 		String itsTrue = "true";
 		boolean bool = itsTrue.equals(str);
 		return bool;
-		}
-		
-		public String getProperty(String key) {
-			String value = properties.getProperty(key);
-			return value;
-		}
-		
-		
-		public void setDefaultGamevalue(LinkedHashMap <String,String> parameters) {		
-			parameters.forEach((key,value)-> this.defaultValue.add(value));
-			
-		}
-	
-		
-		public void setParameterKey(int parametersTableIndice) {			
-			this.parameterKey =parametersTxtKeys.get(parametersTableIndice);
-		}
-		public void setParameterCurrentValue(int parametersTableIndice) {
-			this.parameterCurrentValue = getProperty(this.parameterKey);
-		}
-		public void setParameterDefaultValueValue(int parametersTableIndice) {
-			this.parameterDefaultValue = this.defaultValue.get(parametersTableIndice);
-		}
-
-		public String getParameterKey() {
-			return parameterKey;
-		}
-
-		
-
-		public String getParameterCurrentValue() {
-			return parameterCurrentValue;
-		}
-
-		
-
-		public String getParameterDefaultValue() {
-			return parameterDefaultValue;
-		}
-public void displayDefaultValue() {
-	this.paramaters.forEach((key,value)->System.out.println("parameter : "+key.replaceAll(" ", "_")+" -> Default value= "+value));
-}
-
-public void displayCurrentValue() {
-	ArrayList <String> currentParameters = new ArrayList<>();
-	for(int i= 0;i<this.paramaters.size();i++) {
-		setParameterKey(i);
-		setParameterCurrentValue(i);
-		currentParameters.add("parameter : "+this.parameterKey+" -> Default value= "+this.parameterCurrentValue);		
 	}
-	currentParameters.forEach(string->System.out.println(string));
-}
-public int stringToInteger(String str) {
-	int integer = Integer.parseInt(str);
-	return integer;
-}
 
+	public String getProperty(String key) {
+		String value = properties.getProperty(key);
+		return value;
+	}
 
-public void valueRangeCheck(String valueToSet, int minParameter, int maxParameter) {	
-	int value = stringToInteger(valueToSet);
-	if (value < minParameter || value > maxParameter)
-		
-		this.valueCheckPass = false;
-	else
-		this.valueCheckPass = true;
-		
-}
+	public void setDefaultGamevalue(LinkedHashMap<String, String> parameters) {
+		parameters.forEach((key, value) -> this.defaultValue.add(value));
 
-public void valueIntegerCheck(String valueToSet) {
-	boolean digitOnly = valueToSet.matches("[0-9]{" + valueToSet.length() + "}");
-	if (digitOnly == false)
-		this.valueCheckPass = false;
-	else
-		this.valueCheckPass = true;
-}
+	}
 
-public void valueBooleanCheck(String booleanValue) {
-	boolean itsTrue = booleanValue.equalsIgnoreCase("true");
-	boolean itsFalse = booleanValue.equalsIgnoreCase("false");
-	if (itsTrue == true || itsFalse == true)
-		this.valueCheckPass = true;
-	else
-		this.valueCheckPass = false;
+	public void setParameterKey(int parametersTableIndice) {
+		this.parameterKey = parametersTxtKeys.get(parametersTableIndice);
+	}
 
-}		
-		
-		
+	public void setParameterCurrentValue(int parametersTableIndice) {
+		this.parameterCurrentValue = getProperty(this.parameterKey);
+	}
+
+	public void setParameterDefaultValueValue(int parametersTableIndice) {
+		this.parameterDefaultValue = this.defaultValue.get(parametersTableIndice);
+	}
+
+	public String getParameterKey() {
+		return parameterKey;
+	}
+
+	public String getParameterCurrentValue() {
+		return parameterCurrentValue;
+	}
+
+	public String getParameterDefaultValue() {
+		return parameterDefaultValue;
+	}
+
+	public void displayDefaultValue() {
+		this.paramaters.forEach((key, value) -> System.out
+				.println("parameter : " + key.replaceAll(" ", "_") + " -> Default value= " + value));
+	}
+
+	public void displayCurrentValue() {
+		ArrayList<String> currentParameters = new ArrayList<>();
+		for (int i = 0; i < this.paramaters.size(); i++) {
+			setParameterKey(i);
+			setParameterCurrentValue(i);
+			currentParameters.add("parameter : " + this.parameterKey + " = " + this.parameterCurrentValue);
+		}
+		currentParameters.forEach(string -> System.out.println(string));
+	}
+
+	public int stringToInteger(String str) {
+		int integer = Integer.parseInt(str);
+		return integer;
+	}
+
+	public void valueRangeCheck(String valueToSet, int minParameter, int maxParameter) {
+		int value = stringToInteger(valueToSet);
+		if (value < minParameter || value > maxParameter)
+
+			this.valueCheckPass = false;
+		else
+			this.valueCheckPass = true;
+
+	}
+
+	public void valueIntegerCheck(String valueToSet) {
+		boolean digitOnly = valueToSet.matches("[0-9]{" + valueToSet.length() + "}");
+		if (digitOnly == false)
+			this.valueCheckPass = false;
+		else
+			this.valueCheckPass = true;
+	}
+
+	public void valueBooleanCheck(String booleanValue) {
+		boolean itsTrue = booleanValue.equalsIgnoreCase("true");
+		boolean itsFalse = booleanValue.equalsIgnoreCase("false");
+		if (itsTrue == true || itsFalse == true)
+			this.valueCheckPass = true;
+		else
+			this.valueCheckPass = false;
+
+	}
+
 }

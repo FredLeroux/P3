@@ -10,22 +10,24 @@ public class Main {
 //TODO JAVADOC
 //TODO Clean and classified all methode
 	//TODO methode to check integrity config.prop
-	//TODO metyhode display defaukt value
+	
 	//TODO methode repaire config properties
-	public static boolean codeCompareCheck = false;
-	public static boolean hitCheck = false;
+	
+	public static boolean entryPass = true;
+	public static boolean end = false;	
 	public static Scanner entry = new Scanner(System.in);
 	public static int gameChoice;
 	public static int choice;
-	public static Configuration configInitial;
+	
 	 
 	
 	public static void main(String[] args) throws EntryException, IOException {
 		
-		GameParameters gameConfiguration = new GameParameters();		
-		gameConfiguration.readConfiguration();
+		GameParameters gameConfiguration = new GameParameters();
+		
+		//gameConfiguration.readConfiguration();		
 		System.out.println("Application current settings");
-		gameConfiguration.displayCurrentValue();
+		gameConfiguration.displayCurrentValue();		
 		System.out.println("\n");
 		
 		
@@ -48,14 +50,7 @@ public class Main {
 
 			// --------------------------------------------------------------------------------------------------------------
 			if (gameChoice == 1) {
-				MoreLess moreLess = new MoreLess();
-				//moreLess.readConfiguration();
-				//moreLess.configurationCheck();
-				//System.out.println("maxhit set at : " + moreLess.getMaxHit());
-				//System.out.println("Select Version");
-				//System.out.println("1: Basis");
-				//System.out.println("2: Variante");
-				//moreLess.setVersion(entry.nextInt());
+				MoreLess moreLess = new MoreLess();				
 				moreLess.setChallengerMode(1);
 				moreLess.setCode();
 
@@ -68,8 +63,7 @@ public class Main {
 						moreLess.AskOpProposition(moreLess.getCode(),
 								"Please enter your proposition n°= " + moreLess.getHit());
 						moreLess.setOpEntry(entry.next());
-						moreLess.entryCheckLength(moreLess.getOpEntry(), moreLess.getElementsNb());
-						moreLess.entryIntegerCheck(moreLess.getOpEntry());
+						entryPass = moreLess.opEntryCheck();
 					} while (moreLess.getOpEntry() == null);
 					moreLess.setOpProposal(moreLess.getOpEntry());
 					moreLess.Comparison(moreLess.getCode(), moreLess.getOpProposal());
@@ -79,9 +73,8 @@ public class Main {
 						moreLess.setGameAnswer();
 						System.out.println(moreLess.getGameAnswer());
 					}
-					codeCompareCheck = (!moreLess.getOpProposal().equals(moreLess.getCode()));
-					hitCheck = moreLess.getHit() < moreLess.getMaxHit();
-				} while (codeCompareCheck && hitCheck);
+					end=moreLess.gameStatu();
+				} while (end==false);
 				moreLess.Summary();
 			}
 			// --------------------------------------------------------------------------------------------------------------
@@ -108,15 +101,12 @@ public class Main {
 			if (gameChoice == 3) {
 				
 				MoreLess mLDefender = new MoreLess();				
-				mLDefender.setChallengerMode(2);
+				mLDefender.setChallengerMode(0);
 				do {
 					System.out.println("set your code");
-					mLDefender.setOpEntry(entry.next());
-					mLDefender.entryCheckLength(mLDefender.getOpEntry(), mLDefender.getElementsNb());
-					mLDefender.entryIntegerCheck(mLDefender.getOpEntry());
-					mLDefender.entryDuplicateCheck(mLDefender.getOpEntry());
-					mLDefender.entryIntegerRangeCheck(mLDefender.getOpEntry());
-				} while (mLDefender.getOpEntry() == null);
+					mLDefender.setOpEntry(entry.next());					
+					entryPass = mLDefender.opEntryCheck();
+				} while (entryPass==false);
 				mLDefender.setOpCode(mLDefender.getOpEntry());
 
 				do {
@@ -153,9 +143,8 @@ public class Main {
 
 				}while (mLDefender.isCheatTentative() == true);
 						
-
-				} while (!(mLDefender.getPcProposal().equals(mLDefender.getOpCode()))
-						&& !(mLDefender.getHit() == mLDefender.getMaxHit()) && mLDefender.isCheating() == false);
+					end=mLDefender.gameStatu();
+				} while (end==false);
 
 				mLDefender.Summary();
 
@@ -200,11 +189,7 @@ public class Main {
 
 			// --------------------------------------------------------------------------------------------------------------------------------------------------------
 			if (gameChoice == 5) {
-				MoreLess mLDuel = new MoreLess();
-				System.out.println("Select Version");
-				System.out.println("1: Basis");
-				System.out.println("2: Variante");
-				//mLDuel.setVariantVersion(entry.nextInt());();
+				MoreLess mLDuel = new MoreLess();				
 				mLDuel.setDuelMode(1);
 				mLDuel.setChallengerMode(1);
 				mLDuel.setCode();
@@ -243,7 +228,7 @@ public class Main {
 					do {
 
 						do {
-							mLDuel.setChallengerMode(2);
+							mLDuel.setChallengerMode(0);
 
 							mLDuel.setPreviousHit("Pc previous proposition : ");
 							mLDuel.tableDisplay(mLDuel.getPreviousHit());
@@ -272,10 +257,8 @@ public class Main {
 							mLDuel.setHistoric(mLDuel.getPcProposal(), mLDuel.getHit());
 						}
 					} while (mLDuel.isCheatTentative() == true);
-
-				} while (!mLDuel.getOpProposal().equals(mLDuel.getCode()) && mLDuel.getHit() < mLDuel.getMaxHit()
-						&& !(mLDuel.getPcProposal().equals(mLDuel.getOpCode()))
-						&& !(mLDuel.getHit() == mLDuel.getMaxHit()) && mLDuel.isCheating() == false);
+					end = mLDuel.gameStatu();
+				} while (end==false);
 
 				mLDuel.Summary();
 			}
@@ -291,9 +274,8 @@ public class Main {
 				gameConfiguration.parametersList();				
 				do {
 				System.out.println("\nWhat is the parameter you would like to change?");
-				gameConfiguration.setKeyToSet(entry.nextInt());
-				gameConfiguration.optionNumberCheck(gameConfiguration.getKeyToSet(), gameConfiguration.getConfigElements().size());
-				}while (gameConfiguration.getKeyToSet()==0);
+				gameConfiguration.setKeyToSet(entry.nextInt());				
+				}while (gameConfiguration.optionNumberCheck(gameConfiguration.getKeyToSet(), gameConfiguration.getConfigElements().size())==false);
 				do {
 				System.out.println("what is the value you want set on "+gameConfiguration.getConfigElements().get(gameConfiguration.getKeyToSet())+" parameter" );
 				
