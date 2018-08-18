@@ -3,65 +3,74 @@ package p3.Game;
 
 import java.io.IOException;
 
-class MoreLess extends Game {	
-	private int cheatCount = 0;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+class MoreLess extends Game {
+
+	// Variables declaration
 	private String mLClues;
 	private StringBuilder moreLessAnswer;
-	
+	private static final Logger MORELESS_LOGGER = LogManager.getLogger(GameParameters.class.getName());
 
-	public MoreLess() throws IOException,EntryException {		
+	// -----------------------------------------------------------------------------------------------------------------------------------------------------
+	// Variables instantiation
+	public MoreLess() throws IOException, EntryException {
 		this.mLClues = null;
 		this.moreLessAnswer = new StringBuilder();
 		historicChallengerTbl.clear();
 		historicDefenderTbl.clear();
 	}
 
+	// -----------------------------------------------------------------------------------------------------------------------------------------------------
+	// Variables Getter an Setter
 	public String getmLClues() {
+		traceVariableLogger(0, "mLClues");
 		return mLClues;
+
 	}
 
 	public void setMLClues(String mLClues) {
-
+		traceVariableLogger(1, "mLClues");
 		this.mLClues = mLClues;
 	}
 
 	public StringBuilder getMoreLessAnswer() {
+		traceVariableLogger(1, "moreLessAnswer");
 		return moreLessAnswer;
 	}
 
 	public void setMoreLessAnswer(StringBuilder moreLessAnswer) {
-
+		traceVariableLogger(0, "moreLessAnswer");
 		this.moreLessAnswer = moreLessAnswer;
 	}
 
 	public String answerToString() {
+		traceVariableLogger(1, "moreLessAnswer.toString()");
 		return this.moreLessAnswer.toString();
 	}
 
-	// to overide
-	public void cheatStop(String code, String codeToCompare) throws EntryException {
-		cheatTentative = false;
-		Comparison(code, codeToCompare);
-		if (!(this.moreLessAnswer.toString().equals(mLClues))) {
-			this.cheatCount++;
-			try {
-				if (cheatCount > 0)
-					if (this.cheatCount < 3)
-						throw new EntryException(cheatCount);
-					else
-						this.cheating = true;
-
-			} catch (EntryException e) {
-				cheatTentative = true;
-
-			}
-		}
-
+	// -----------------------------------------------------------------------------------------------------------------------------------------------------
+	// Logger Method implementation
+	public void traceMethodLogger(int i, String method) {
+		if (i == 0)
+			MORELESS_LOGGER.trace("Enter in method " + method);
+		if (i == 1)
+			MORELESS_LOGGER.trace("Out of method " + method);
 	}
 
-	// ----------------------------------------------------------------------------------------------------
+	public void traceVariableLogger(int i, String variable) {
+		if (i == 0)
+			MORELESS_LOGGER.trace("set " + variable);
+		if (i == 1)
+			MORELESS_LOGGER.trace("get " + variable);
+	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------------------------------
+	// Methods Implementation
 	@Override
-	public void Comparison(String code, String codeTocompare) {
+	public void comparison(String code, String codeTocompare) {
+		traceMethodLogger(0, "Comparison");
 		char moreIndication = '+';
 		char lessIndication = '-';
 		char equalsIndication = '=';
@@ -83,32 +92,12 @@ class MoreLess extends Game {
 			moreLessAnswer.append(moreLessAnswerElmt);
 		}
 		this.moreLessAnswer = moreLessAnswer;
+		traceMethodLogger(1, "Comparison");
 	}
 
-	// ----------------------------------------------------------------------------------------------------
 	@Override
-	public void setHistoric(String code, int getHit) {
-		String comment = null;
-		String answer = null;
-
-		if (cheatTentative == true && cheatCount > 0 || cheating == true) {
-			comment = "(Player cheating tentative or entry error).";
-			answer = this.mLClues;
-		} else {
-			comment = " .";
-			answer = answerToString();
-		}
-		if (challengerMode == true)
-			historicChallengerTbl.add("Your proposition n°= " + getHit + " was : " + code
-					+ " || The PC clues on this proposition are " + answer + comment);
-		else
-			historicDefenderTbl.add("Pc proposition n°= " + getHit + " was : " + code
-					+ " || Your clues on this proposition are " + answer + comment);
-	}
-
-	// ----------------------------------------------------------------------------------------------------
-	@Override
-	public void SecretCodeResearch(String pcCodeEntry) {
+	public void secretCodeResearch(String pcCodeEntry) {
+		traceMethodLogger(0, "SecretCodeResearch");
 		int maxRange = this.maxRange;
 		int minRange = this.minRange;
 		int nbElements = this.elementsNb;
@@ -131,7 +120,7 @@ class MoreLess extends Game {
 					if (mLClues.charAt(i) == '-')
 						pcEntryElmt = middle - ((middle - minRange) / 2);
 					else {
-						pcEntryElmt = (((maxRange +1)- middle) / 2) + middle;
+						pcEntryElmt = (((maxRange + 1) - middle) / 2) + middle;
 					}
 					pcEntrySb.append(pcEntryElmt);
 				} else if (Character.getNumericValue(pcCodeEntry.charAt(i)) > middle) {
@@ -159,9 +148,58 @@ class MoreLess extends Game {
 			}
 			this.pcProposal = pcEntrySb.toString();
 		}
+		traceMethodLogger(1, "SecretCodeResearch");
 	}
 
-	// ----------------------------------------------------------------------------------------------------
+	@Override
+	public void setHistoric(String codeProposal, int getHit) {
+		traceMethodLogger(0, "setHistoric");
+		String comment = null;
+		String answer = null;
+
+		if (cheatTentative == true && cheatCount > 0 || cheating == true)
+			comment = "(Player cheating tentative or entry error).";
+
+		else {
+			comment = " .";
+
+		}
+		if (challengerMode == true) {
+			answer = answerToString();
+			historicChallengerTbl.add("Your proposition n°= " + String.format("%0" + 2 + "d", getHit) + " was : "
+					+ codeProposal + " || The PC clues on this proposition are " + answer + comment);
+		} else {
+			answer = this.mLClues;
+			historicDefenderTbl.add("Pc proposition n°= " + String.format("%0" + 2 + "d", getHit) + " was : "
+					+ codeProposal + " || Your clues on this proposition are " + answer + comment);
+		}
+		traceMethodLogger(1, "setHistoric");
+	}
+
+	@Override
+	public void cheatStop(String code, String codeToCompare) throws EntryException {
+		traceMethodLogger(0, "cheatStop");
+		this.cheatTentative = false;
+		comparison(code, codeToCompare);
+		if (!(this.moreLessAnswer.toString().equals(mLClues))) {
+			this.cheatCount++;
+			try {
+				if (this.cheatCount > 0)
+					if (this.cheatCount < 3)
+						throw new EntryException(cheatCount);
+					else
+						this.cheating = true;
+
+			} catch (EntryException e) {
+				MORELESS_LOGGER.trace("This condition will raised an Exception");
+				this.cheatTentative = true;
+
+			}
+		}
+		traceMethodLogger(1, "cheatStop");
+
+	}
+	// -----------------------------------------------------------------------------------------------------------------------------------------------------
+	// Class End
 
 }
-

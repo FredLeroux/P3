@@ -3,9 +3,17 @@ package p3.Game;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class EntryException extends Exception {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final String retry = "\nPlease retry.\n";
 	private final String retry1 = "\nThe parameter(s) value(s) was set to default.\n";
+	private static final Logger LOGGER = LogManager.getLogger(EntryException.class.getName());
 
 	public EntryException() {
 		System.out.println("\nENTRY EXCEPTION\n");
@@ -17,8 +25,6 @@ public class EntryException extends Exception {
 		System.out.println("Default values :");
 
 	}
-	
-
 
 	public EntryException(String str, int i) {
 		if (i == 0)
@@ -36,9 +42,11 @@ public class EntryException extends Exception {
 		else if (i == 4)
 			System.out
 					.println("\nENTRY RANGE EXCEPTION\nThis entry : " + str + " is not within the set range " + retry);
-		else if(i==5)
-			System.out
-			.println("\nCONFIG.PROPERTIES EXCEPTION\n" + str + "\nCorrection done" + retry1);
+		else if (i == 5)
+			System.out.println("\nCONFIG.PROPERTIES EXCEPTION\n" + str + "\nCorrection done" + retry1);
+		else if (i == 6)
+			LOGGER.fatal(
+					"FATAL ERROR\nMastermind defender mode need a code list initiated and not Empty, application close");
 
 	}
 
@@ -79,11 +87,11 @@ public class EntryException extends Exception {
 
 	public EntryException(String parametersName, String parameterValueRead, int entryExceptionNumber) {
 		if (entryExceptionNumber == 0)
-			System.out.println("\nENTRY BOOLEAN VALUE EXCEPTION\nParameter: " + parametersName
+			LOGGER.error("\nENTRY BOOLEAN VALUE EXCEPTION\nParameter: " + parametersName
 					+ " accepte only true or false value\nThe value : " + parameterValueRead + " is not accepted"
 					+ retry1);
 		else if (entryExceptionNumber == 1)
-			System.out.println("\nENTRY NUMBER FORMAT EXCEPTION\nParameter: " + parametersName
+			LOGGER.debug("\nENTRY NUMBER FORMAT EXCEPTION\nParameter: " + parametersName
 					+ " accepte only integer value \nThe value : " + parameterValueRead + " is not accepted" + retry1);
 		else if (entryExceptionNumber == 2)
 			System.out.println("\nENTRY VALUE EXCEPTION\nIn Basis version parameter: " + parametersName
@@ -91,6 +99,3 @@ public class EntryException extends Exception {
 					+ "\nThis value is superior to Digits Maximum Range\nGame was set to variant version");
 	}
 }
-	
-
-

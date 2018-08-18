@@ -3,26 +3,25 @@ package p3.Game;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-
 import java.util.Random;
 
-abstract class Game extends GameParameters {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+abstract class Game extends GameParameters {
+	private static final Logger GAME_LOGGER = LogManager.getLogger(GameParameters.class.getName());
 	protected int hit = 0;
 	private String code = null;
-	private String opCode = null;
-	private String opProposal = null;
+	protected String opCode = null;
+	protected String opProposal = null;
 	protected String pcProposal = null;
-	private String opEntry = null;
+	protected String opEntry = null;
 	private String gameAnswer = null;
 	protected boolean cheating;
 	protected boolean duplicate;
 	protected boolean challengerMode;
-	protected boolean cheatTentative =false;
-	private boolean valueCheckPass = true;
+	protected boolean cheatTentative = false;
 	private ArrayList<String> previousHit = new ArrayList<>();
 	protected ArrayList<String> historicChallengerTbl = new ArrayList<>();
 	protected ArrayList<String> historicDefenderTbl = new ArrayList<>();
@@ -40,9 +39,10 @@ abstract class Game extends GameParameters {
 	protected boolean devMode;
 	protected boolean autoMode;
 	protected boolean variantVersion;
+	protected int cheatCount = 0;
 
 	public Game() throws IOException, EntryException {
-
+		GAME_LOGGER.trace("*****NEW GAME*****");
 		checkParametersBooleanType(booleanIndiceList);
 		checkParametersIntegerType(IntegerIndiceList);
 		checkParamatersSpecificValue(1, 2, 3);
@@ -312,34 +312,35 @@ abstract class Game extends GameParameters {
 
 	public void setGameAnswer() {
 
-		if (challengerMode == true) {	
+		if (challengerMode == true) {
 			if (opProposal.equals(code))
-				this.gameAnswer="\nYOU MAY HAVE WIN\nIt seems that you have found the Pc secret code, lets check if Pc has found yours.";
+				this.gameAnswer = "\n!!!!YOU MAY HAVE WIN!!!!\nIt seems that you have found the Pc secret code, lets check if Pc has found yours.\n";
 			else
-			this.gameAnswer = "\nSorry this is not the secret code\n" + (maxHit - (hit))
-					+ " tentative(s) remaining  on the " + maxHit + " initially attributed.\n";
+				this.gameAnswer = "\nSorry this is not the secret code\n" + (maxHit - (hit))
+						+ " tentative(s) remaining  on the " + maxHit + " initially attributed.\n";
 
 		} else {
 			this.gameAnswer = (maxHit - (hit)) + " tentative(s) left.\n";
 		}
 
 	}
-	public boolean codeEquivalenceCheck(String code,String codeToCompare) {
+
+	public boolean codeEquivalenceCheck(String code, String codeToCompare) {
 		boolean equal = false;
 		boolean equality = code.equals(codeToCompare);
-		if(equality==true)
-			equal=true;
+		if (equality == true)
+			equal = true;
 		return equal;
-		
+
 	}
-	
+
 	public boolean hitCheck() {
-	boolean equal =false;
-	if(this.hit==this.maxHit)
-		equal=true;
-	return equal;	
+		boolean equal = false;
+		if (this.hit == this.maxHit)
+			equal = true;
+		return equal;
 	}
-	
+
 	public boolean gameStatu() {
 		ArrayList<Boolean> gameStatuResults = new ArrayList<>();
 		boolean end = false;
@@ -363,8 +364,7 @@ abstract class Game extends GameParameters {
 		return end;
 
 	}
-	
-	
+
 	public void Conclusion() {
 		ArrayList<String> summary = new ArrayList<>();
 		String comment = null;
@@ -517,18 +517,19 @@ abstract class Game extends GameParameters {
 		return pass;
 	}
 
-	public boolean opEntryCheck() throws EntryException {
+	public boolean opEntryCodeCheck() throws EntryException {
 		ArrayList<Boolean> testresults = new ArrayList<>();
-		
-		boolean pass = true;		
-			testresults.add(entryCheckLength(this.opEntry, this.elementsNb));
-			testresults.add(entryIntegerCheck(this.opEntry));
-			if(this.challengerMode==false) {
+
+		boolean pass = true;
+		testresults.add(entryCheckLength(this.opEntry, this.elementsNb));
+		testresults.add(entryIntegerCheck(this.opEntry));
+		if (this.challengerMode == false) {
 			testresults.add(entryDuplicateCheck(this.opEntry));
-			testresults.add(entryIntegerRangeCheck(this.opEntry));}
-			
+			testresults.add(entryIntegerRangeCheck(this.opEntry));
+		}
+
 		boolean failed = testresults.contains(false);
-		if (failed==true)
+		if (failed == true)
 			pass = false;
 
 		return pass;
@@ -541,26 +542,27 @@ abstract class Game extends GameParameters {
 	}
 
 	public void checkParametersBooleanType(int[] indiceList) {
-
+		// traceMethodLogger(0, "checkParametersBooleanType");
 		for (int i = 0; i < indiceList.length; i++) {
 			setParametersInfo(indiceList[i]);
-			valueBooleanCheck(this.parameterCurrentValue);
+
 			try {
-				if (this.valueCheckPass == false)
+				if (valueBooleanCheck(this.parameterCurrentValue) == false)
 					throw new EntryException(this.parameterKey, parameterCurrentValue, 0);
 			} catch (EntryException e0) {
 				writeConfiguration(this.parameterKey, parameterDefaultValue);
 			}
 		}
+		// traceMethodLogger(1, "checkParametersBooleanType");
 	}
 
 	public void checkParametersIntegerType(int[] indiceList) {
 
 		for (int i = 0; i < indiceList.length; i++) {
 			setParametersInfo(indiceList[i]);
-			valueIntegerCheck(this.parameterCurrentValue);
+
 			try {
-				if (this.valueCheckPass == false)
+				if (valueIntegerCheck(this.parameterCurrentValue) == false)
 					throw new EntryException(this.parameterKey, parameterCurrentValue, 1);
 			} catch (EntryException e1) {
 				writeConfiguration(this.parameterKey, parameterDefaultValue);
@@ -574,16 +576,17 @@ abstract class Game extends GameParameters {
 		setGameParameters();
 		try {
 			setParametersInfo(minRangeIndice);
-			valueRangeCheck(parameterCurrentValue, this.minMinRange, this.maxMinRange);
-			if (this.valueCheckPass == false || stringToInteger(this.parameterCurrentValue) >= this.maxRange)
+			if (valueRangeCheck(parameterCurrentValue, this.minMinRange, this.maxMinRange) == false
+					|| stringToInteger(this.parameterCurrentValue) >= this.maxRange)
 				throw new EntryException(parameterKey, parameterCurrentValue, this.minMinRange, this.maxMinRange, 0);
 		} catch (EntryException e2) {
 			writeConfiguration(this.parameterKey, parameterDefaultValue);
 		}
 		try {
 			setParametersInfo(maxRangeIndice);
-			valueRangeCheck(parameterCurrentValue, this.minMaxRange, this.maxMaxRange);
-			if (this.valueCheckPass == false || stringToInteger(this.parameterCurrentValue) <= this.minRange)
+			;
+			if (valueRangeCheck(parameterCurrentValue, this.minMaxRange, this.maxMaxRange) == false
+					|| stringToInteger(this.parameterCurrentValue) <= this.minRange)
 				throw new EntryException(parameterKey, parameterCurrentValue, this.minMaxRange, this.maxMaxRange, 1);
 		} catch (EntryException e3) {
 			writeConfiguration(this.parameterKey, this.parameterDefaultValue);
@@ -612,6 +615,11 @@ abstract class Game extends GameParameters {
 
 	}
 
+	public String intToString(int i) {
+		String intToString = String.valueOf(i);
+		return intToString;
+	}
+
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * @param Code
@@ -619,9 +627,12 @@ abstract class Game extends GameParameters {
 	 * @param codeTocompare
 	 *            define the code to compare generate by PC or by the Operator;
 	 */
-	public abstract void Comparison(String secretcode, String codeToCompare);
 
-	public abstract void SecretCodeResearch(String pcEntry);
+	public abstract void comparison(String secretCode, String codeToCompare);
+
+	public abstract void secretCodeResearch(String pcProposal);
+
+	public abstract void cheatStop(String code, String codeToCompare) throws EntryException;
 
 	public abstract void setHistoric(String code, int getHit);
 

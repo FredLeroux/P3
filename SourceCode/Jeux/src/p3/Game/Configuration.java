@@ -27,7 +27,6 @@ abstract class Configuration {
 	protected String parameterKey = null;
 	protected String parameterCurrentValue = null;
 	protected String parameterDefaultValue = null;
-	protected boolean valueCheckPass = true;
 
 	public Configuration() {
 		this.keyToSet = 0;
@@ -112,24 +111,24 @@ abstract class Configuration {
 			e.printStackTrace();
 		}
 		input.close();
-		
+
 		try {
 
-			boolean integrity = integrityCheck();			
+			boolean integrity = integrityCheck();
 			if (integrity == false) {
 				throw new EntryException("Compromised File Integrity", 5);
 			}
 		} catch (EntryException e1) {
-			storeDefaultValue(this.paramaters);			
+			storeDefaultValue(this.paramaters);
 			try {
 				input1 = new FileInputStream(this.configFile);
 				this.properties.load(input1);
 			} catch (IOException e) {
-				e.printStackTrace();				
+				e.printStackTrace();
 				input1.close();
 			}
 		}
-		
+
 	}
 
 	public void createtxt() throws IOException {
@@ -160,7 +159,7 @@ abstract class Configuration {
 		HashMap<Object, Object> propertiesTable = new HashMap<>();
 		this.properties.forEach((key, value) -> propertiesTable.put(key, value));
 		integrity.addAll(propertiesTable.keySet());
-		
+
 		if (integrity.size() != this.parametersTxtKeys.size())
 
 			pass = false;
@@ -168,8 +167,10 @@ abstract class Configuration {
 			int wrong = 0;
 			for (int i = 0; i < this.parametersTxtKeys.size(); i++) {
 				String toCheck = integrity.get(i).toString().replaceAll("=", "");
-				if (!this.parametersTxtKeys.contains(toCheck)||properties.getProperty(parametersTxtKeys.get(i)).isEmpty()) {					
-					wrong++;}
+				if (!this.parametersTxtKeys.contains(toCheck)
+						|| properties.getProperty(parametersTxtKeys.get(i)).isEmpty()) {
+					wrong++;
+				}
 			}
 
 			if (wrong > 0)
@@ -271,32 +272,30 @@ abstract class Configuration {
 		return integer;
 	}
 
-	public void valueRangeCheck(String valueToSet, int minParameter, int maxParameter) {
+	public boolean valueRangeCheck(String valueToSet, int minParameter, int maxParameter) {
+		boolean pass = true;
 		int value = stringToInteger(valueToSet);
 		if (value < minParameter || value > maxParameter)
-
-			this.valueCheckPass = false;
-		else
-			this.valueCheckPass = true;
+			pass = false;
+		return pass;
 
 	}
 
-	public void valueIntegerCheck(String valueToSet) {
+	public boolean valueIntegerCheck(String valueToSet) {
+		boolean pass = true;
 		boolean digitOnly = valueToSet.matches("[0-9]{" + valueToSet.length() + "}");
 		if (digitOnly == false)
-			this.valueCheckPass = false;
-		else
-			this.valueCheckPass = true;
+			pass = false;
+		return pass;
 	}
 
-	public void valueBooleanCheck(String booleanValue) {
+	public boolean valueBooleanCheck(String booleanValue) {
+		boolean pass = false;
 		boolean itsTrue = booleanValue.equalsIgnoreCase("true");
 		boolean itsFalse = booleanValue.equalsIgnoreCase("false");
 		if (itsTrue == true || itsFalse == true)
-			this.valueCheckPass = true;
-		else
-			this.valueCheckPass = false;
-
+			pass = true;
+		return pass;
 	}
 
 }

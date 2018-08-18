@@ -1,5 +1,6 @@
 package p3.Game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Mastermind extends Game {
@@ -8,16 +9,16 @@ public class Mastermind extends Game {
 	private int nbPresent;
 	private int clueRightPlaced;
 	private int clueElmentPresent;
-	private ArrayList<String> codeList;
+	private ArrayList<String> possibilitiesList;
 
-	public Mastermind() {
+	public Mastermind() throws IOException, EntryException {
 		this.nbRightPlaced = 0;
 		this.nbPresent = 0;
 		this.clueRightPlaced = 0;
 		this.clueElmentPresent = 0;
-		this.codeList = new ArrayList<>();
-		historic.clear();// historic clear parceque sinon si on joue au challenger puis au defenseur l
-							// historic n est pas reinitialiser
+		this.possibilitiesList = new ArrayList<>();
+		historicChallengerTbl.clear();
+		historicDefenderTbl.clear();
 	}
 
 	public int getNbRightPlaced() {
@@ -32,52 +33,23 @@ public class Mastermind extends Game {
 		return clueRightPlaced;
 	}
 
-	public void setClueRightPlaced(int clueRightPlaced) {
-		boolean pass = true;
-		try {
-			comparison(getPcEntry(), getOpCode(), getElementsNb());
-			if (nbRightPlaced != clueRightPlaced)
-				throw new EntryException();
-		} catch (EntryException e) {
-			System.out.println("Attention it seem's that you've made a mistake "
-					+ "\nThe correct clue is nb right placed = " + nbRightPlaced + "\n");
-			pass = false;
-		}
-		if (pass == false) {
-			this.clueRightPlaced = -1;
-
-		} else
-			this.clueRightPlaced = clueRightPlaced;
+	public void setClueRightPlaced(String clueRightPlaced) {
+		this.clueRightPlaced = Integer.parseInt(clueRightPlaced);
 	}
 
 	public int getClueElmentPresent() {
 		return clueElmentPresent;
 	}
 
-	public void setClueElmentPresent(int clueElmentPresent) {
-		boolean pass = true;
-		try {
-			comparison(getPcEntry(), getOpCode());
-			if (nbPresent != clueElmentPresent)
-				throw new EntryException();
-		} catch (EntryException e) {
-			System.out.println("Attention it seem's that you've made a mistake "
-					+ "\nThe correct clue is and nb persent = " + nbPresent + "\n");
-
-			pass = false;
-		}
-		if (pass == false) {
-			this.clueElmentPresent = -1;
-
-		} else
-			this.clueElmentPresent = clueElmentPresent;
+	public void setClueElmentPresent(String clueElmentPresent) {
+		this.clueElmentPresent = Integer.parseInt(clueElmentPresent);
 	}
 
 	/**
 	 * @return a String ArrayList
 	 */
 	public ArrayList<String> getCodeList() {
-		return codeList;
+		return possibilitiesList;
 	}
 
 	/**
@@ -91,30 +63,27 @@ public class Mastermind extends Game {
 	 *            secret code
 	 */
 
-	public void setCodeList(int nbElements) {
+	public void setPossibilitiesList() {
 		ArrayList<String> codeList = new ArrayList<>();
-		if (codeList.isEmpty()) {
-			String code = null;
-			int codeListElmt = 0;
-			for (int i = 0; i < Math.pow(10, nbElements); i++) {
-				code = String.format("%0" + nbElements + "d", codeListElmt++);
-				if (basisVer == true) {
-					avoidDuplicate(code, nbElements);
-					if (duplicate == true)
-						continue;
-					else
-						codeList.add(code);
-				} else
+		String code = null;
+		int codeListElmt = 0;
+		for (int i = 0; i < Math.pow(10, this.elementsNb); i++) {
+			code = String.format("%0" + this.elementsNb + "d", codeListElmt++);
+			if (variantVersion == false) {
+				avoidDuplicate(code, this.elementsNb);
+				if (duplicate == true)
+					continue;
+				else
 					codeList.add(code);
-			}
+			} else
+				codeList.add(code);
 		}
-
-		this.codeList = codeList;
+		this.possibilitiesList = codeList;
 	}
 
 	/**
 	 * 
-	 * @param codeList
+	 * @param possibilitiesList
 	 *            is a string list
 	 * 
 	 * 
@@ -122,15 +91,15 @@ public class Mastermind extends Game {
 	 *             IllegalArgumentException in case of a codeList with a size at 0 .
 	 */
 
-	public void pcProposition(ArrayList<String> codeList) {
+	public String pcProposition() {
 		try {
-			if (codeList.size() == 0)
-				throw new EntryException();
+			if (this.possibilitiesList.size() == 0)
+				throw new EntryException("Fatal", 6);
 		} catch (EntryException e) {
-			System.out.println("!System Error!  \nMastermind defender mode need a code list initiated");
+			System.exit(1);
 
 		}
-		this.pcCode=codeList.get(getRandom(0, (codeList.size() - 1)));
+		return this.pcProposal = this.possibilitiesList.get(getRandom(0, (possibilitiesList.size() - 1)));
 		// causse a codeliste size at 0 is an empty codelist and not a codelits with 1
 		// elment so to avoid bug -1 //to be clear a codelist with 1 string have a size
 		// of
@@ -140,9 +109,31 @@ public class Mastermind extends Game {
 
 	}
 
-	
+	public void possibilitySelection(String pcProposal) {
+
+		String secretCodePossible = null;
+
+		for (int i = 0; i < this.possibilitiesList.size(); i++) {
+			secretCodePossible = this.possibilitiesList.get(i);
+			// secret code est un des code de la liste car concraitement
+			// on compare un code à un code dela liste donc il faut garder le
+			// meme sens pour etre plus claire on etablie les clue en
+			// faisant pcentry versus opcode don on dois faire pcentry
+			// versus un des code dela liste qui contient le opcode
+			comparison(pcProposal, secretCodePossible);
+			if (!(clueRightPlaced == nbRightPlaced && clueElmentPresent == nbPresent)) {
+				this.possibilitiesList.remove(secretCodePossible);
+
+			} else
+				continue;
+		}
+
+		this.possibilitiesList.remove(this.pcProposal);
+
+	}
+
 	@Override
-	public void comparison(String codeToCompare, String secretCode) {
+	public void comparison(String secretCode, String codeToCompare) {
 		this.nbRightPlaced = 0;
 		this.nbPresent = 0;
 		int elementsNb = secretCode.length();
@@ -157,71 +148,68 @@ public class Mastermind extends Game {
 			}
 		}
 		codeToCompareTbl.retainAll(secretCodeTbl);
-		this.nbPresent = Math.abs(nbRightPlaced -codeToCompareTbl.size() );
+		this.nbPresent = Math.abs(nbRightPlaced - codeToCompareTbl.size());
 	}
 
 	@Override
-	public void setHistoric(String code, String answer, int getHit) {
-		
-		int nbRigthPlaced =0;
-		int nbPresent = 0;
-		if (this.challengerMode == true) {
-			nbRigthPlaced =this.nbRightPlaced;
-			nbPresent = this.nbPresent;}
-		else {			
-			nbRigthPlaced =this.clueRightPlaced;
-			nbPresent = this.clueElmentPresent;}
-		
-
-		historic.put(getHit, " : " + code + " // clues are " + nbRigthPlaced + " element(s) rigth placed, "
-				+ nbPresent + " element(s) present");
-
-	}
-
-	public void secretCodeResearch(ArrayList<String> codeList) {
-		
-		String secretCodePossible = null;
-		String codeToCompare = getPcCode();
-		for (int i = 0; i < codeList.size(); i++) {
-			secretCodePossible = codeList.get(i);// secret code eszt un des code de la liste car concraitement
-													// on
-			// compare un code à un code dela liste donc il faut garder le
-			// meme sens pour etre plus claire on etablie les clue en
-			// faisant pcentry versus opcode don on dois faire pcentry
-			// versus un des code dela liste qui contient le opcode
-			comparison(codeToCompare,secretCodePossible);
-			if (!(clueRightPlaced == nbRightPlaced && clueElmentPresent == nbPresent)) {
-				codeList.remove(secretCodePossible);
-
-			} else
-				continue;
+	public void secretCodeResearch(String pcProposal) {
+		if (pcProposal == null) {
+			setPossibilitiesList();
+			pcProposition();
+		}
+		if (pcProposal != null) {
+			comparison(this.opCode, pcProposal);
+			possibilitySelection(pcProposal);
+			pcProposition();
 		}
 
-		codeList.remove(getPcCode());
-		
-
 	}
+
 	@Override
-	public void Summary (String code, String codeToCompare, boolean challengerMode) {
-			
-			String comment =null;
-			
-			clueRightPlaced = nbRightPlaced;
-			clueElmentPresent = nbPresent;
-			;
-			
-			if (code.equals(codeToCompare)) {
-				
-				comment ="Pc managed to find your secret code which was :" +code;}
-			else {
-				code = getOpCode();				
-				comment = "Pc did not find you secret code which was : " +code;}
-			ArrayList<String> summary = new ArrayList <>();
-			summary.add(getGameAnswer);
-			summary.add(comment);
-			summary.add("Summary");		
-			summary.forEach(elmt ->System.out.println(elmt));
-			getHistoric();
-		}
+	public void setHistoric(String codeProposal, int getHit) {
+		// traceMethodLogger(0, "setHistoric");
 
+		String comment = null;
+		String answer = null;
+
+		if (cheatTentative == true && cheatCount > 0 || cheating == true) {
+			comment = "(Player cheating tentative or entry error).";
+		} else {
+			comment = " .";
+		}
+		if (challengerMode == true)
+			historicChallengerTbl.add("Your proposition n°= " + String.format("%0" + 2 + "d", getHit) + " was : "
+					+ codeProposal + " || The PC clues on this proposition are " + "Right placed element(s) number is "
+					+ "{ " + this.nbRightPlaced + " }" + " Present element(s) number is " + "{ " + this.nbPresent + " }"
+					+ comment);
+		else
+			historicDefenderTbl.add("Pc proposition n°= " + String.format("%0" + 2 + "d", getHit) + " was : "
+					+ codeProposal + " || Your clues on this proposition are " + " Right placed element(s) number is "
+					+ "{ " + this.clueRightPlaced + " }" + " Present element(s) number is " + "{ "
+					+ this.clueElmentPresent + " }" + comment);
+		// traceMethodLogger(1, "setHistoric");
+	}
+
+	@Override
+	public void cheatStop(String code, String codeToCompare) throws EntryException {
+		// traceMethodLogger(0, "cheatStop");
+		this.cheatTentative = false;
+		comparison(code, codeToCompare);
+		if (this.nbRightPlaced != this.clueRightPlaced || this.nbPresent != this.clueElmentPresent) {
+			this.cheatCount++;
+			try {
+				if (this.cheatCount > 0)
+					if (this.cheatCount < 3)
+						throw new EntryException(cheatCount);
+					else
+						this.cheating = true;
+
+			} catch (EntryException e) {
+				this.cheatTentative = true;
+
+			}
+		}
+		// traceMethodLogger(1, "cheatStop");
+
+	}
 }
