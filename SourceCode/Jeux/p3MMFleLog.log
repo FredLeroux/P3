@@ -717,3 +717,437 @@ The parameter(s) value(s) was set to default.
 2018-08-18 22:49:16 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
 2018-08-18 22:49:16 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
 2018-08-18 22:49:16 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:40:18 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:40:20 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:40:20 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 194) message= Cheat Tenative = true
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 194) message= Cheat Tenative = true
+2018-08-19 10:40:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:40:31 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:40:31 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:40:31 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:40:31 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:40:31 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 194) message= Cheat Tenative = true
+2018-08-19 10:40:31 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:44:34 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:44:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:44:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:44:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:44:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:44:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:44:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:44:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 194) message= Cheat Tenative = true
+2018-08-19 10:44:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:44:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:44:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:44:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:44:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:44:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:44:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:44:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 194) message= Cheat Tenative = true
+2018-08-19 10:44:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:44:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:44:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:44:46 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:44:46 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:44:46 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:44:46 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:44:46 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 194) message= Cheat Tenative = true
+2018-08-19 10:44:46 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:47:14 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:47:17 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:47:17 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:47:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:47:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:47:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:47:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:47:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:47:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:47:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:47:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:47:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:47:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:47:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:47:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:47:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:47:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:47:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:47:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:47:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:47:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:47:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:47:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:47:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:47:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:49:34 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:49:35 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:49:35 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:49:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:49:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:49:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:49:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:49:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:49:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:49:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:49:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:49:39 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:49:39 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:49:39 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:49:39 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:49:39 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:49:39 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:49:39 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:49:39 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:49:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:49:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:49:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:49:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:49:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:49:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:50:56 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:50:57 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:50:57 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:51:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:51:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:51:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:51:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:51:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:51:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:51:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:51:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:51:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:51:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:51:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:51:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:51:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:51:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:51:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:51:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:51:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:51:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:51:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:51:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:51:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = true
+2018-08-19 10:51:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:51:37 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:51:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:51:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 195) message= Cheat Tenative = false
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:51:43 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:52:49 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:53:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:53:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:53:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:53:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:53:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:53:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:53:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = true
+2018-08-19 10:53:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:53:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:53:04 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = false
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:53:10 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:53:23 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:53:23 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:53:23 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:53:23 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:53:23 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = true
+2018-08-19 10:53:23 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:53:23 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:53:23 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:53:28 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:53:28 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:53:28 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:53:28 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:53:28 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = false
+2018-08-19 10:53:28 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:53:28 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:53:28 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:54:27 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:54:34 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:54:34 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = false
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:54:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:54:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:54:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:54:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:54:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:54:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = true
+2018-08-19 10:54:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:54:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:54:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = false
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:54:56 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:55:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:55:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:55:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:55:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:55:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = true
+2018-08-19 10:55:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:55:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:55:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:55:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:55:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:55:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:55:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:55:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = false
+2018-08-19 10:55:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:55:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:55:06 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:57:17 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:57:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:57:19 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = false
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:57:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:57:30 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:57:30 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:57:30 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:57:30 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:57:30 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = true
+2018-08-19 10:57:30 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:57:30 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:57:30 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:59:29 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 10:59:35 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:59:35 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = false
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 10:59:37 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 10:59:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:59:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:59:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:59:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:59:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = true
+2018-08-19 10:59:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:59:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:59:40 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 10:59:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 10:59:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 10:59:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 10:59:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 10:59:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = true
+2018-08-19 10:59:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 10:59:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 10:59:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = false
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 11:00:01 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 11:00:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 11:00:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 11:00:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 11:00:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 11:00:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 197) message= Cheat Tenative = false
+2018-08-19 11:00:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 11:00:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 11:00:22 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 11:01:43 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 11:01:45 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 11:01:45 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = false
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 11:01:49 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 11:11:19 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 11:11:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 11:11:21 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = false
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 11:11:24 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 11:25:52 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 11:26:42 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 11:27:07 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 11:27:50 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 11:29:07 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 11:30:41 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 11:31:57 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 18:36:36 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 18:37:45 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 18:39:10 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 19:48:43 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:05:22 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:12:33 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:13:17 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:30:02 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:30:12 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:30:55 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:31:56 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:32:22 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:35:42 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:44:31 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 20:44:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 20:44:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 20:44:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 20:44:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-19 20:44:36 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:25:28 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:30:30 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:34:34 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:34:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:34:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:34:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:34:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-19 22:34:38 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:34:38 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:36:26 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:36:32 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:36:32 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:36:32 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:36:32 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-19 22:36:32 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:36:32 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:37:10 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:37:12 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:37:12 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:37:12 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:37:12 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-19 22:37:12 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:37:28 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:37:33 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:37:33 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:37:33 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:37:33 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-19 22:37:33 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:37:35 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:45:30 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:45:37 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:49:53 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:49:55 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 22:49:55 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 22:50:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 22:50:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 22:50:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:50:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:50:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = true
+2018-08-19 22:50:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 22:50:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:50:00 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:50:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 22:50:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 22:50:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:50:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:50:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = true
+2018-08-19 22:50:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 22:50:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:50:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:50:03 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 22:50:03 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 22:50:03 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:50:03 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:50:03 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = false
+2018-08-19 22:50:03 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 22:50:03 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:50:03 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:52:08 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:54:53 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:54:58 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:54:58 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:54:58 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:54:58 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-19 22:54:58 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:54:58 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method SecretCodeResearch
+2018-08-19 22:54:58 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method SecretCodeResearch
+2018-08-19 22:55:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get mLClues
+2018-08-19 22:55:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method cheatStop
+2018-08-19 22:55:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:55:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:55:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 196) message= Cheat Tenative = false
+2018-08-19 22:55:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method cheatStop
+2018-08-19 22:55:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:55:02 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:56:37 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:57:55 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:58:09 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:58:09 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:58:09 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:58:09 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-19 22:58:09 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-19 22:58:14 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-19 22:58:20 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-19 22:58:20 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-19 22:58:20 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-19 22:58:20 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-19 22:58:20 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-20 00:18:33 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-20 00:18:42 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method Comparison
+2018-08-20 00:18:42 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method Comparison
+2018-08-20 00:18:42 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 57) message= Enter in method setHistoric
+2018-08-20 00:18:42 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
+2018-08-20 00:18:42 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
+2018-08-20 00:37:56 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****

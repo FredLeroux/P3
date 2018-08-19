@@ -1,8 +1,6 @@
 
 package p3.Game;
 
-import java.util.ArrayList;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -56,12 +54,6 @@ public class EntryException extends Exception {
 	}
 
 	public EntryException(int cheatCount) {
-		ArrayList<String> number = new ArrayList<>();
-		number.add("First");
-		number.add("Second");
-
-		System.out.println(number.get(cheatCount - 1)
-				+ " Cheating tentative detection or entry error, the third will be the last\n");
 
 	}
 

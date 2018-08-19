@@ -170,8 +170,6 @@ public class Mastermind extends Game {
 		// traceMethodLogger(0, "setHistoric");
 
 		String comment = null;
-		String answer = null;
-
 		if (cheatTentative == true && cheatCount > 0 || cheating == true) {
 			comment = "(Player cheating tentative or entry error).";
 		} else {
@@ -191,25 +189,26 @@ public class Mastermind extends Game {
 	}
 
 	@Override
-	public void cheatStop(String code, String codeToCompare) throws EntryException {
+	public boolean cheatTentative(String code, String codeToCompare) {
+		boolean cheat = false;
 		// traceMethodLogger(0, "cheatStop");
 		this.cheatTentative = false;
 		comparison(code, codeToCompare);
 		if (this.nbRightPlaced != this.clueRightPlaced || this.nbPresent != this.clueElmentPresent) {
 			this.cheatCount++;
-			try {
-				if (this.cheatCount > 0)
-					if (this.cheatCount < 3)
-						throw new EntryException(cheatCount);
-					else
-						this.cheating = true;
-
-			} catch (EntryException e) {
+			if (this.cheatCount != 3) {
+				cheatWarning();
 				this.cheatTentative = true;
+				cheat = true;
+			} else
+				this.cheating = true;
 
-			}
-		}
+		} else
+			cheat = false;
+		// MORELESS_LOGGER.trace("Cheat Tenative = " + cheat);
 		// traceMethodLogger(1, "cheatStop");
-
+		return cheat;
 	}
+	// traceMethodLogger(1, "cheatStop");
+
 }

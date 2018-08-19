@@ -139,7 +139,7 @@ abstract class Game extends GameParameters {
 
 	public void setCode() {
 		String codetoCheck = null;
-		Code code = new Code(minRange, maxRange, elementsNb);
+		Code code = new Code(this.minRange, this.maxRange, this.elementsNb);
 		if (challengerMode == true) {
 			if (this.variantVersion == false) {
 				do {
@@ -320,7 +320,8 @@ abstract class Game extends GameParameters {
 						+ " tentative(s) remaining  on the " + maxHit + " initially attributed.\n";
 
 		} else {
-			this.gameAnswer = (maxHit - (hit)) + " tentative(s) left.\n";
+			this.gameAnswer = (maxHit - (hit)) + "  tentative(s) remaining  on the " + maxHit
+					+ " initially attributed.\n";
 		}
 
 	}
@@ -369,41 +370,41 @@ abstract class Game extends GameParameters {
 		ArrayList<String> summary = new ArrayList<>();
 		String comment = null;
 		if (cheating == true) {
-			comment = "????!!Who cheat loose!!??? \nThree cheating tentatives";
+			comment = "\n????!!Who cheat loose!!??? \nThree cheating tentatives";
 		} else {
 			if (duelMode == false) {
 				if (this.challengerMode == true) {
 
 					if (this.opProposal.equals(this.code)) {
-						comment = "!!!!CONGRATULATION YOU WIN!!!!\nYou managed to find Pc secret code which was : "
+						comment = "\n!!!!CONGRATULATION YOU WIN!!!!\nYou managed to find Pc secret code which was : "
 								+ this.opProposal;
 					} else {
-						comment = "????SORRY YOU LOOSE???\nYou did not find Pc secret code which was : " + this.code;
+						comment = "\n????SORRY YOU LOOSE???\nYou did not find Pc secret code which was : " + this.code;
 					}
 				}
 				if (this.challengerMode == false) {
 
 					if (this.pcProposal.equals(this.opCode)) {
-						comment = "????SORRY YOU LOOSE???\nPc managed to find your secret code which was : "
+						comment = "\n????SORRY YOU LOOSE???\nPc managed to find your secret code which was : "
 								+ this.pcProposal;
 					} else {
-						comment = "!!!!CONGRATULATION YOU WIN!!!!\nPc did not find you secret code which was : "
+						comment = "\n!!!!CONGRATULATION YOU WIN!!!!\nPc did not find you secret code which was : "
 								+ this.opCode;
 					}
 				}
 
 			} else {
 				if (this.opProposal.equals(this.code) && !this.pcProposal.equals(this.opCode)) {
-					comment = "!!!!CONGRATULATION YOU WIN!!!!\nYou managed to find Pc secret code which was : "
+					comment = "\n!!!!CONGRATULATION YOU WIN!!!!\nYou managed to find Pc secret code which was : "
 							+ this.opProposal + "\nPc did not find you secret code which was : " + this.opCode;
 				} else if (!this.opProposal.equals(this.code) && !this.pcProposal.equals(this.opCode)) {
-					comment = "****DRAW GAME****\nYou did not find Pc secret code which was : " + this.code
+					comment = "\n****DRAW GAME****\nYou did not find Pc secret code which was : " + this.code
 							+ "\nPc did not find you secret code which was : " + this.opCode;
 				} else if (this.opProposal.equals(this.code) && this.pcProposal.equals(this.opCode)) {
-					comment = "****DRAW GAME****\nYou managed to find Pc secret code which was : " + this.opProposal
+					comment = "\n****DRAW GAME****\nYou managed to find Pc secret code which was : " + this.opProposal
 							+ "\nPc managed to find your secret code which was : " + this.pcProposal;
 				} else {
-					comment = "????SORRY YOU LOOSE???\nPc managed to find your secret code which was : "
+					comment = "\n????SORRY YOU LOOSE???\nPc managed to find your secret code which was : "
 							+ this.pcProposal + "\nYou did not find Pc secret code which was : " + this.code;
 				}
 			}
@@ -620,6 +621,17 @@ abstract class Game extends GameParameters {
 		return intToString;
 	}
 
+	public String cheatWarning() {
+
+		ArrayList<String> number = new ArrayList<>();
+		number.add("First");
+		number.add("Second");
+		String warning = number.get(this.cheatCount - 1)
+				+ " Cheating tentative detection or entry error, the third will be the last\n";
+
+		return warning;
+	}
+
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * @param Code
@@ -632,7 +644,7 @@ abstract class Game extends GameParameters {
 
 	public abstract void secretCodeResearch(String pcProposal);
 
-	public abstract void cheatStop(String code, String codeToCompare) throws EntryException;
+	public abstract boolean cheatTentative(String code, String codeToCompare);
 
 	public abstract void setHistoric(String code, int getHit);
 

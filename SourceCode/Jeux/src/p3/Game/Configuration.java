@@ -55,12 +55,12 @@ abstract class Configuration {
 		return configElements;
 	}
 
-	public void parametersList() {
+	public HashMap<Integer, String> parametersList() {
 		ArrayList<String> keyList = new ArrayList<>();
 		keyList.addAll(this.paramaters.keySet());
 		for (int i = 0; i < this.paramaters.size(); i++)
 			this.configElements.put(i + 1, keyList.get(i));
-		this.configElements.forEach((key, value) -> System.out.println(key + ":" + value));
+		return this.configElements;
 	}
 
 	public void createParameterKeysList(HashMap<String, String> parameters) {
