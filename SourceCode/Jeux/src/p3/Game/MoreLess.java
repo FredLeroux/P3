@@ -1,12 +1,22 @@
 
 package p3.Game;
+/**
+ * Class MoreLess extending Game
+ * <li> This class put in place all the necessary methods to allow to play more/less game .
+ * <li> As well in Challenger or Defender Mode
+ * <li> In challenger mode this class will provide clues
+ * <li> In defender mode this class will provide a code
+ * <li> This class provide too a method which avoid cheating from player
+ */
 
 import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-class MoreLess extends Game {
+import p3.Exception.EntryException;
+
+public class MoreLess extends Game {
 
 	// Variables declaration
 	private String mLClues;
@@ -25,28 +35,23 @@ class MoreLess extends Game {
 	// -----------------------------------------------------------------------------------------------------------------------------------------------------
 	// Variables Getter an Setter
 	public String getmLClues() {
-		traceVariableLogger(0, "mLClues");
 		return mLClues;
 
 	}
 
 	public void setMLClues(String mLClues) {
-		traceVariableLogger(1, "mLClues");
 		this.mLClues = mLClues;
 	}
 
 	public StringBuilder getMoreLessAnswer() {
-		traceVariableLogger(1, "moreLessAnswer");
 		return moreLessAnswer;
 	}
 
 	public void setMoreLessAnswer(StringBuilder moreLessAnswer) {
-		traceVariableLogger(0, "moreLessAnswer");
 		this.moreLessAnswer = moreLessAnswer;
 	}
 
 	public String answerToString() {
-		traceVariableLogger(1, "moreLessAnswer.toString()");
 		return this.moreLessAnswer.toString();
 	}
 
@@ -59,18 +64,19 @@ class MoreLess extends Game {
 			MORELESS_LOGGER.trace("Out of method " + method);
 	}
 
-	public void traceVariableLogger(int i, String variable) {
-		if (i == 0)
-			MORELESS_LOGGER.trace("set " + variable);
-		if (i == 1)
-			MORELESS_LOGGER.trace("get " + variable);
-	}
-
 	// -----------------------------------------------------------------------------------------------------------------------------------------------------
 	// Methods Implementation
+
+	/**
+	 *
+	 * @return <i><b>Clues composed of +,-,= </b> </i>
+	 * 
+	 * 
+	 */
 	@Override
 	public void comparison(String code, String codeTocompare) {
 		traceMethodLogger(0, "Comparison");
+		MORELESS_LOGGER.trace("code is" + code, "code to compare  is" + codeTocompare);
 		char moreIndication = '+';
 		char lessIndication = '-';
 		char equalsIndication = '=';
@@ -92,12 +98,25 @@ class MoreLess extends Game {
 			moreLessAnswer.append(moreLessAnswerElmt);
 		}
 		this.moreLessAnswer = moreLessAnswer;
+		MORELESS_LOGGER.trace("moreLessAnswer =" + moreLessAnswer);
 		traceMethodLogger(1, "Comparison");
 	}
 
+	/**
+	 * @return <i><b>A code proposition based on a dichotomies approach </b> </i>
+	 * 
+	 *         <li>if the Pc proposal is null method will generate a code composed
+	 *         of the elements number set and where each element is equal to the
+	 *         range middle
+	 *         <li>If the Pc Proposal is not null method will use a dichotomies
+	 *         method in function of the clues provided by the player
+	 *         <li>Note: method can loop to infinite if the player cheat, however
+	 *         this method is to link with cheat stop method.
+	 */
 	@Override
 	public void secretCodeResearch(String pcCodeEntry) {
 		traceMethodLogger(0, "SecretCodeResearch");
+		MORELESS_LOGGER.trace("pcProposal = " + pcCodeEntry);
 		int maxRange = this.maxRange;
 		int minRange = this.minRange;
 		int nbElements = this.elementsNb;
@@ -151,6 +170,14 @@ class MoreLess extends Game {
 		traceMethodLogger(1, "SecretCodeResearch");
 	}
 
+	/**
+	 * @return A string implemented in the corresponding historic table in game type
+	 *         function.
+	 *         <li>this method will fill the cheating tentative in case of cheating
+	 *         detection.
+	 *         <li>Historic will give the code proposal given and the clues
+	 *         resulting
+	 */
 	@Override
 	public void setHistoric(String codeProposal, int getHit) {
 		traceMethodLogger(0, "setHistoric");
@@ -176,7 +203,14 @@ class MoreLess extends Game {
 		traceMethodLogger(1, "setHistoric");
 	}
 
+	/**
+	 * @return true if a cheating tentative is detected
+	 *         <li>This method avoid cheating by comparison between player answer
+	 *         and the result of method comparison, using the player secret code and
+	 *         the PC proposal
+	 */
 	@Override
+
 	public boolean cheatTentative(String code, String codeToCompare) {
 		traceMethodLogger(0, "cheatStop");
 		boolean cheat = false;

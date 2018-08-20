@@ -1,14 +1,38 @@
-package p3.Game;
+package p3.Configuration;
+/**
+ * This class give the rules and explain the parameters
+ */
 
 import java.util.ArrayList;
 
-public class HelpAndRules {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import p3.Game.GameParameters;
+
+public class HelpAndRules {
+	// Variables declaration
 	private final static String SEPARATOR = "\n*************************";
 	private final static String TITLE_BORDER = "________________________\n";
 	private ArrayList<String> helpAndRules = new ArrayList<>();
+	private static final Logger HELP_LOGGER = LogManager.getLogger(GameParameters.class.getName());
 
+	// -----------------------------------------------------------------------------------------------------------------------------------------------------
+	// Logger Method implementation
+	public void traceMethodLogger(int i, String method) {
+		if (i == 0)
+			HELP_LOGGER.trace("Enter in method " + method);
+		if (i == 1)
+			HELP_LOGGER.trace("Out of method " + method);
+	}
+	// -----------------------------------------------------------------------------------------------------------------------------------------------------
+	// Methods Implementation
+
+	/**
+	 * Give a table containing rules and explanations on parameters
+	 */
 	public HelpAndRules() {
+		traceMethodLogger(0, "HelpAndRules");
 		this.helpAndRules.add(TITLE_BORDER);
 		this.helpAndRules.add("Rules");
 		this.helpAndRules.add(TITLE_BORDER);
@@ -89,11 +113,17 @@ public class HelpAndRules {
 		this.helpAndRules.add(SEPARATOR);
 		this.helpAndRules.add("Defender Auto Mode will in Defender mode let the application give the clues");
 		this.helpAndRules.add(SEPARATOR);
-
+		traceMethodLogger(1, "HelpAndRules");
 	}
 
+	/**
+	 * Display the rules and help
+	 */
 	public void helpAndRulesDisplay() {
+		traceMethodLogger(0, "helpAndRulesDisplay");
 		this.helpAndRules.forEach(string -> System.out.println(string));
+		traceMethodLogger(0, "helpAndRulesDisplay");
 	}
-
+	// -----------------------------------------------------------------------------------------------------------------------------------------------------
+	// Class End
 }

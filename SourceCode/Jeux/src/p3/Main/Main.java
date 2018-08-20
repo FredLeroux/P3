@@ -1,12 +1,22 @@
 
-package p3.Game;
+package p3.Main;
 
 import java.io.IOException;
 import java.util.Scanner;
 
+import p3.Configuration.HelpAndRules;
+import p3.Exception.EntryException;
+import p3.Game.GameParameters;
+import p3.Game.Mastermind;
+import p3.Game.MoreLess;
+
+/**
+ * OpenClassRooms P3 mettez votre logique à l'epreuve.
+ * 
+ * @author Frederic Leroux
+ *
+ */
 public class Main {
-	// TODO JAVADOC
-	// TODO Clean and classified all methode
 
 	public static boolean cheat = false;
 	public static boolean entryPass = true;
@@ -25,18 +35,17 @@ public class Main {
 			System.out.println("Application current settings");
 			gameConfiguration.displayCurrentValue();
 			System.out.println("\n");
-
 			gameConfiguration.mainMenu();
 			do {
 				System.out.println("Game Option Choice ?");
 				gameChoice = entry.next();
 				entryPass = gameConfiguration.optionChooseCheck(gameChoice, gameConfiguration.getMainOptions().size());
-			} while (entryPass == false);
+			} while (!entryPass);
 			gameConfiguration.appQuit(gameChoice);
 			if (gameChoice.equals("1")) {
 				do {
 					do {
-						gameConfiguration.playMenu(0, gameChoice);
+						gameConfiguration.subMenu(0, gameChoice);
 						System.out.println("Option Choice ?");
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -71,7 +80,7 @@ public class Main {
 						} while (end == false);
 						moreLess.Summary();
 						do {
-							gameConfiguration.playMenu(1, gameChoice);
+							gameConfiguration.subMenu(1, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -85,7 +94,7 @@ public class Main {
 			if (gameChoice.equals("2")) {
 				do {
 					do {
-						gameConfiguration.playMenu(0, gameChoice);
+						gameConfiguration.subMenu(0, gameChoice);
 						System.out.println("Option Choice ?");
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -120,7 +129,7 @@ public class Main {
 						} while (end == false);
 						masterMind.Summary();
 						do {
-							gameConfiguration.playMenu(1, gameChoice);
+							gameConfiguration.subMenu(1, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -134,7 +143,7 @@ public class Main {
 			if (gameChoice.equals("3")) {
 				do {
 					do {
-						gameConfiguration.playMenu(0, gameChoice);
+						gameConfiguration.subMenu(0, gameChoice);
 						System.out.println("Option Choice ?");
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -190,7 +199,7 @@ public class Main {
 
 						mLDefender.Summary();
 						do {
-							gameConfiguration.playMenu(1, gameChoice);
+							gameConfiguration.subMenu(1, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
 						} while (gameConfiguration.optionChooseCheck(choice,
@@ -203,7 +212,7 @@ public class Main {
 			if (gameChoice.equals("4")) {
 				do {
 					do {
-						gameConfiguration.playMenu(0, gameChoice);
+						gameConfiguration.subMenu(0, gameChoice);
 						System.out.println("Option Choice ?");
 						choice = entry.next();
 					} while (gameConfiguration.optionChooseCheck(choice,
@@ -275,7 +284,7 @@ public class Main {
 
 						mastermindDfndr.Summary();
 						do {
-							gameConfiguration.playMenu(1, gameChoice);
+							gameConfiguration.subMenu(1, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -289,7 +298,7 @@ public class Main {
 			if (gameChoice.equals("5")) {
 				do {
 					do {
-						gameConfiguration.playMenu(0, gameChoice);
+						gameConfiguration.subMenu(0, gameChoice);
 						System.out.println("Option Choice ?");
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -372,7 +381,7 @@ public class Main {
 
 						mLDuel.Summary();
 						do {
-							gameConfiguration.playMenu(1, gameChoice);
+							gameConfiguration.subMenu(1, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -386,7 +395,7 @@ public class Main {
 			if (gameChoice.equals("6")) {
 				do {
 					do {
-						gameConfiguration.playMenu(0, gameChoice);
+						gameConfiguration.subMenu(0, gameChoice);
 						System.out.println("Option Choice ?");
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -486,7 +495,7 @@ public class Main {
 
 						mastermindDuel.Summary();
 						do {
-							gameConfiguration.playMenu(1, gameChoice);
+							gameConfiguration.subMenu(1, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -505,7 +514,7 @@ public class Main {
 					gameConfiguration.configurationMenu(gameConfiguration);
 					do {
 						System.out.println(
-								"\nOptions 1 to 7 : Change a parameter\nOption 9 : Back to main\nOption 10 : Quit\nWhat would you like do ?");
+								"\nOptions 1 to 7 : Change a parameter\nOption 9 : Back to main\nOption 0 : Quit\nWhat would you like do ?");
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
 								gameConfiguration.getConfigurationOptions().size());
@@ -531,7 +540,7 @@ public class Main {
 						gameConfiguration.saveConfiguration();
 
 						do {
-							gameConfiguration.playMenu(2, gameChoice);
+							gameConfiguration.subMenu(2, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -544,7 +553,7 @@ public class Main {
 			if (gameChoice.equals("8")) {
 				do {
 					do {
-						gameConfiguration.playMenu(3, gameChoice);
+						gameConfiguration.subMenu(3, gameChoice);
 						System.out.println("Option Choice ?");
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
@@ -557,7 +566,7 @@ public class Main {
 						helpandRules.helpAndRulesDisplay();
 
 						do {
-							gameConfiguration.playMenu(1, gameChoice);
+							gameConfiguration.subMenu(1, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
