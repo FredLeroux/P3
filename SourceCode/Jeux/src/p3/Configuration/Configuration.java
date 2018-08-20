@@ -288,10 +288,10 @@ abstract class Configuration {
 			properties.setProperty(key, value);
 			properties.store(output, null);
 			output.close();
-			throw new EntryException(new FileNotFoundException());
-		} catch (EntryException e) {
-			System.exit(1);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
 		traceMethodLogger(1, "writeConfiguration");
 	}
 
