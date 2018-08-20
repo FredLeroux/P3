@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
-public class GameParameters extends Configuration {
+public class GameParameters extends Menu {
 	private LinkedHashMap<String, String> gameParameters;
 
 	public GameParameters() throws FileNotFoundException, IOException, EntryException {
@@ -22,6 +22,14 @@ public class GameParameters extends Configuration {
 		setDefaultGamevalue(this.gameParameters);
 		readConfiguration();
 
+	}
+
+	public LinkedHashMap<String, String> getGameParameters() {
+		return gameParameters;
+	}
+
+	public void setGameParameters(LinkedHashMap<String, String> gameParameters) {
+		this.gameParameters = gameParameters;
 	}
 
 }

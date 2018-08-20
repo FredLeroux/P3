@@ -1151,3 +1151,5 @@ The parameter(s) value(s) was set to default.
 2018-08-20 00:18:42 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 66) message= get moreLessAnswer.toString()
 2018-08-20 00:18:42 Level = *** TRACE *** at:[main] Game.MoreLess (from: MoreLess.java ligne-> 59) message= Out of method setHistoric
 2018-08-20 00:37:56 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-20 11:24:13 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****
+2018-08-20 11:55:19 Level = *** TRACE *** at:[main] Game.Game (from: Game.java ligne-> 45) message= *****NEW GAME*****

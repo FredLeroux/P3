@@ -1,10 +1,11 @@
 
 package p3.Game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Menu {
+abstract class Menu extends Configuration {
 
 	private ArrayList<String> appHead = new ArrayList<>();
 	private ArrayList<String> menuTitle = new ArrayList<>();
@@ -16,7 +17,7 @@ public class Menu {
 	private HashMap<Integer, String> ConfigurationOptions = new HashMap<>();
 	private int opChoice = 0;
 
-	public Menu() {
+	public Menu() throws IOException, EntryException {
 		// Application head default settings
 		appHead.add("OpenClassRooms Projet 3: Mettez votre logique à l'épreuve.");
 		appHead.add("Seak +/- and MasterMind Game");
@@ -31,6 +32,7 @@ public class Menu {
 		mainOptions.put(5, "More/Less Game Duel Mode");
 		mainOptions.put(6, "Mastermind Game Duel Mode");
 		mainOptions.put(7, "Configuration");
+		mainOptions.put(8, "Help and Rules");
 
 	}
 
@@ -38,8 +40,9 @@ public class Menu {
 		return opChoice;
 	}
 
-	public void setOpChoice(int opChoice) {
-		this.opChoice = opChoice;
+	public void setOpChoice(String opChoice) throws EntryException {
+		int opchoiceint = stringToInteger(opChoice);
+		this.opChoice = opchoiceint;
 	}
 
 	public ArrayList<String> getAppHead() {
@@ -99,18 +102,21 @@ public class Menu {
 		hashMapDisplay(mainOptions);
 	}
 
-	public void playMenu(int i, int choice) {
+	public void playMenu(int i, String choice) throws EntryException {
+		int choiceint = stringToInteger(choice);
 		menuTitle.clear();
-		menuTitle.add("\n" + this.mainOptions.get(choice) + MENU + "\n");
+		menuTitle.add("\n" + this.mainOptions.get(choiceint) + MENU + "\n");
 		arrayListDisplay(menuTitle);
 		this.playOptions.put(0, QUIT);
 		this.playOptions.put(1, "Back to " + MAIN_ID);
 		if (i == 0)
-			this.playOptions.put(2, "Play  " + this.mainOptions.get(choice));
+			this.playOptions.put(2, "Play  " + this.mainOptions.get(choiceint));
 		if (i == 1)
-			this.playOptions.put(2, "Replay  " + this.mainOptions.get(choice));
+			this.playOptions.put(2, "Replay  " + this.mainOptions.get(choiceint));
 		if (i == 2)
 			this.playOptions.put(2, "Change another parameter ");
+		if (i == 3)
+			this.playOptions.put(2, "Display Help and Rules ");
 		hashMapDisplay(this.playOptions);
 	}
 
@@ -119,14 +125,18 @@ public class Menu {
 		menuTitle.add("\nApplication Configuration" + MENU);
 		menuTitle.add("Parameters list\n");
 		arrayListDisplay(menuTitle);
-		ConfigurationOptions.putAll(configuration.parametersList());
-		ConfigurationOptions.put(ConfigurationOptions.size() + 1, "Back to " + MAIN_ID);
-		ConfigurationOptions.put(ConfigurationOptions.size() + 1, QUIT);
+		if (!ConfigurationOptions.containsValue(QUIT)) {
+			ConfigurationOptions.putAll(configuration.parametersList());
+			ConfigurationOptions.put(ConfigurationOptions.size() + 1, "Load Default Setup");
+			ConfigurationOptions.put(ConfigurationOptions.size() + 1, "Back to " + MAIN_ID);
+			ConfigurationOptions.put(0, QUIT);
+		}
 		hashMapDisplay(this.ConfigurationOptions);
 	}
 
-	public void appQuit(int choice) {
-		if (choice == 0)
+	public void appQuit(String choice) throws EntryException {
+		int choiceint = stringToInteger(choice);
+		if (choiceint == 0)
 			System.exit(1);
 
 	}
@@ -145,11 +155,22 @@ public class Menu {
 		return play;
 	}
 
-	public void playMenuChoice(int choice) {
-		this.opChoice = choice;
+	public void playMenuChoice(String choice) throws EntryException {
+		setOpChoice(choice);
 		appQuit(choice);
 		backToMain();
 		play();
+	}
+
+	public boolean optionChooseCheck(String choice, int optionNumberAvaiable) throws EntryException {
+		ArrayList<Boolean> testresults = new ArrayList<>();
+		int choiceint = stringToInteger(choice);
+		boolean pass = true;
+		testresults.add(optionNumberCheck(choiceint, optionNumberAvaiable));
+		boolean failed = testresults.contains(false);
+		if (failed == true)
+			pass = false;
+		return pass;
 	}
 
 }

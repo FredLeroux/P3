@@ -12,29 +12,38 @@ public class Main {
 	public static boolean entryPass = true;
 	public static boolean end = false;
 	public static Scanner entry = new Scanner(System.in);
-	public static int gameChoice;
-	public static int choice;
+	public static String gameChoice;
+	public static String choice;
+	public static String test;
 
 	public static void main(String[] args) throws EntryException, IOException {
+
 		GameParameters gameConfiguration = new GameParameters();
-		Menu menu = new Menu();
-		menu.arrayListDisplay(menu.getAppHead());
+		gameConfiguration.readConfiguration();
+		gameConfiguration.arrayListDisplay(gameConfiguration.getAppHead());
 		do {
 			System.out.println("Application current settings");
 			gameConfiguration.displayCurrentValue();
 			System.out.println("\n");
 
-			menu.mainMenu();
-			System.out.println("Game Option Choice ?");
-			gameChoice = entry.nextInt();
-			menu.appQuit(gameChoice);
-			if (gameChoice == 1) {
+			gameConfiguration.mainMenu();
+			do {
+				System.out.println("Game Option Choice ?");
+				gameChoice = entry.next();
+				entryPass = gameConfiguration.optionChooseCheck(gameChoice, gameConfiguration.getMainOptions().size());
+			} while (entryPass == false);
+			gameConfiguration.appQuit(gameChoice);
+			if (gameChoice.equals("1")) {
 				do {
-					menu.playMenu(0, gameChoice);
-					System.out.println("Option Choice ?");
-					choice = entry.nextInt();
-					menu.playMenuChoice(choice);
-					while (menu.play() == true) {
+					do {
+						gameConfiguration.playMenu(0, gameChoice);
+						System.out.println("Option Choice ?");
+						choice = entry.next();
+						entryPass = gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getPlayOptions().size());
+					} while (entryPass == false);
+					gameConfiguration.playMenuChoice(choice);
+					while (gameConfiguration.play() == true) {
 						MoreLess moreLess = new MoreLess();
 						moreLess.setChallengerMode(1);
 						moreLess.setCode();
@@ -61,21 +70,29 @@ public class Main {
 							end = moreLess.gameStatu();
 						} while (end == false);
 						moreLess.Summary();
-						menu.playMenu(1, gameChoice);
-						System.out.println("Option Choice ?");
-						choice = entry.nextInt();
-						menu.playMenuChoice(choice);
+						do {
+							gameConfiguration.playMenu(1, gameChoice);
+							System.out.println("Option Choice ?");
+							choice = entry.next();
+							entryPass = gameConfiguration.optionChooseCheck(choice,
+									gameConfiguration.getPlayOptions().size());
+						} while (entryPass == false);
+						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (menu.play() == true);
+				} while (gameConfiguration.play() == true);
 			}
-			if (gameChoice == 2) {
+			if (gameChoice.equals("2")) {
 				do {
-					menu.playMenu(0, gameChoice);
-					System.out.println("Option Choice ?");
-					choice = entry.nextInt();
-					menu.playMenuChoice(choice);
-					while (menu.play() == true) {
+					do {
+						gameConfiguration.playMenu(0, gameChoice);
+						System.out.println("Option Choice ?");
+						choice = entry.next();
+						entryPass = gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getPlayOptions().size());
+					} while (entryPass == false);
+					gameConfiguration.playMenuChoice(choice);
+					while (gameConfiguration.play() == true) {
 						Mastermind masterMind = new Mastermind();
 						masterMind.setChallengerMode(1);
 						masterMind.setCode();
@@ -102,21 +119,29 @@ public class Main {
 							end = masterMind.gameStatu();
 						} while (end == false);
 						masterMind.Summary();
-						menu.playMenu(1, gameChoice);
-						System.out.println("Option Choice ?");
-						choice = entry.nextInt();
-						menu.playMenuChoice(choice);
+						do {
+							gameConfiguration.playMenu(1, gameChoice);
+							System.out.println("Option Choice ?");
+							choice = entry.next();
+							entryPass = gameConfiguration.optionChooseCheck(choice,
+									gameConfiguration.getPlayOptions().size());
+						} while (entryPass == false);
+						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (menu.play() == true);
+				} while (gameConfiguration.play() == true);
 			}
-			if (gameChoice == 3) {
+			if (gameChoice.equals("3")) {
 				do {
-					menu.playMenu(0, gameChoice);
-					System.out.println("Option Choice ?");
-					choice = entry.nextInt();
-					menu.playMenuChoice(choice);
-					while (menu.play() == true) {
+					do {
+						gameConfiguration.playMenu(0, gameChoice);
+						System.out.println("Option Choice ?");
+						choice = entry.next();
+						entryPass = gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getPlayOptions().size());
+					} while (entryPass == false);
+					gameConfiguration.playMenuChoice(choice);
+					while (gameConfiguration.play() == true) {
 						MoreLess mLDefender = new MoreLess();
 						mLDefender.setChallengerMode(0);
 						do {
@@ -164,21 +189,27 @@ public class Main {
 						} while (end == false);
 
 						mLDefender.Summary();
-						menu.playMenu(1, gameChoice);
-						System.out.println("Option Choice ?");
-						choice = entry.nextInt();
-						menu.playMenuChoice(choice);
+						do {
+							gameConfiguration.playMenu(1, gameChoice);
+							System.out.println("Option Choice ?");
+							choice = entry.next();
+						} while (gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getPlayOptions().size()) == false);
+						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (menu.play() == true);
+				} while (gameConfiguration.play() == true);
 			}
-			if (gameChoice == 4) {
+			if (gameChoice.equals("4")) {
 				do {
-					menu.playMenu(0, gameChoice);
-					System.out.println("Option Choice ?");
-					choice = entry.nextInt();
-					menu.playMenuChoice(choice);
-					while (menu.play() == true) {
+					do {
+						gameConfiguration.playMenu(0, gameChoice);
+						System.out.println("Option Choice ?");
+						choice = entry.next();
+					} while (gameConfiguration.optionChooseCheck(choice,
+							gameConfiguration.getPlayOptions().size()) == false);
+					gameConfiguration.playMenuChoice(choice);
+					while (gameConfiguration.play() == true) {
 						Mastermind mastermindDfndr = new Mastermind();
 						mastermindDfndr.setChallengerMode(0);
 						do {
@@ -243,21 +274,29 @@ public class Main {
 						} while (end == false);
 
 						mastermindDfndr.Summary();
-						menu.playMenu(1, gameChoice);
-						System.out.println("Option Choice ?");
-						choice = entry.nextInt();
-						menu.playMenuChoice(choice);
+						do {
+							gameConfiguration.playMenu(1, gameChoice);
+							System.out.println("Option Choice ?");
+							choice = entry.next();
+							entryPass = gameConfiguration.optionChooseCheck(choice,
+									gameConfiguration.getPlayOptions().size());
+						} while (entryPass == false);
+						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (menu.play() == true);
+				} while (gameConfiguration.play() == true);
 			}
-			if (gameChoice == 5) {
+			if (gameChoice.equals("5")) {
 				do {
-					menu.playMenu(0, gameChoice);
-					System.out.println("Option Choice ?");
-					choice = entry.nextInt();
-					menu.playMenuChoice(choice);
-					while (menu.play() == true) {
+					do {
+						gameConfiguration.playMenu(0, gameChoice);
+						System.out.println("Option Choice ?");
+						choice = entry.next();
+						entryPass = gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getPlayOptions().size());
+					} while (entryPass == false);
+					gameConfiguration.playMenuChoice(choice);
+					while (gameConfiguration.play() == true) {
 						MoreLess mLDuel = new MoreLess();
 						mLDuel.setDuelMode(1);
 						mLDuel.setChallengerMode(1);
@@ -332,21 +371,29 @@ public class Main {
 						} while (end == false);
 
 						mLDuel.Summary();
-						menu.playMenu(1, gameChoice);
-						System.out.println("Option Choice ?");
-						choice = entry.nextInt();
-						menu.playMenuChoice(choice);
+						do {
+							gameConfiguration.playMenu(1, gameChoice);
+							System.out.println("Option Choice ?");
+							choice = entry.next();
+							entryPass = gameConfiguration.optionChooseCheck(choice,
+									gameConfiguration.getPlayOptions().size());
+						} while (entryPass == false);
+						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (menu.play() == true);
+				} while (gameConfiguration.play() == true);
 			}
-			if (gameChoice == 6) {
+			if (gameChoice.equals("6")) {
 				do {
-					menu.playMenu(0, gameChoice);
-					System.out.println("Option Choice ?");
-					choice = entry.nextInt();
-					menu.playMenuChoice(choice);
-					while (menu.play() == true) {
+					do {
+						gameConfiguration.playMenu(0, gameChoice);
+						System.out.println("Option Choice ?");
+						choice = entry.next();
+						entryPass = gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getPlayOptions().size());
+					} while (entryPass == false);
+					gameConfiguration.playMenuChoice(choice);
+					while (gameConfiguration.play() == true) {
 						Mastermind mastermindDuel = new Mastermind();
 						mastermindDuel.setDuelMode(1);
 						mastermindDuel.setChallengerMode(1);
@@ -438,46 +485,90 @@ public class Main {
 						} while (end == false);
 
 						mastermindDuel.Summary();
-						menu.playMenu(1, gameChoice);
-						System.out.println("Option Choice ?");
-						choice = entry.nextInt();
-						menu.playMenuChoice(choice);
+						do {
+							gameConfiguration.playMenu(1, gameChoice);
+							System.out.println("Option Choice ?");
+							choice = entry.next();
+							entryPass = gameConfiguration.optionChooseCheck(choice,
+									gameConfiguration.getPlayOptions().size());
+						} while (entryPass == false);
+						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (menu.play() == true);
+				} while (gameConfiguration.play() == true);
 			}
 
-			if (gameChoice == 7) {
+			if (gameChoice.equals("7")) {
 				do {
-					menu.configurationMenu(gameConfiguration);
+					System.out.println("\nConfiguration current settings\n");
+					gameConfiguration.displayCurrentValue();
+					gameConfiguration.configurationMenu(gameConfiguration);
 					do {
 						System.out.println(
-								"\nOptions 1 to 7 : Change a parameter\nOption 8 : Back to main\nOption 9 : Quit\nWhat would you like do ?");
-						choice = entry.nextInt();
-						gameConfiguration.setKeyToSet(choice);
-					} while (gameConfiguration.optionNumberCheck(gameConfiguration.getKeyToSet(),
-							menu.getConfigurationOptions().size()) == false);
-					if (choice == 9)
-						menu.appQuit(0);
-					if (choice == 8)
-						menu.setOpChoice(1);
-					if (choice > 0 && choice < 8) {
+								"\nOptions 1 to 7 : Change a parameter\nOption 9 : Back to main\nOption 10 : Quit\nWhat would you like do ?");
+						choice = entry.next();
+						entryPass = gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getConfigurationOptions().size());
+					} while (entryPass == false);
+					gameConfiguration.setKeyToSet(choice);
+					gameConfiguration.appQuit(choice);
+					if (choice.equals("9")) {
+						gameConfiguration.setOpChoice("1");
+
+					}
+					if (choice.equals("8")) {
+						gameConfiguration.storeDefaultValue(gameConfiguration.getGameParameters());
+						gameConfiguration.readConfiguration();
+						gameConfiguration.setOpChoice("1");
+
+					}
+					if (gameConfiguration.stringToInteger(choice) > 0
+							&& gameConfiguration.stringToInteger(choice) < 8) {
 						System.out.println("what is the value you want set on "
 								+ gameConfiguration.getConfigElements().get(gameConfiguration.getKeyToSet())
 								+ " parameter");
 						gameConfiguration.setValueToSet(entry.next());
 						gameConfiguration.saveConfiguration();
 
-						menu.playMenu(2, gameChoice);
-						System.out.println("Option Choice ?");
-						choice = entry.nextInt(); //
-						menu.playMenuChoice(choice);
+						do {
+							gameConfiguration.playMenu(2, gameChoice);
+							System.out.println("Option Choice ?");
+							choice = entry.next();
+							entryPass = gameConfiguration.optionChooseCheck(choice,
+									gameConfiguration.getPlayOptions().size());
+						} while (entryPass == false);
+						gameConfiguration.playMenuChoice(choice);
 					}
+				} while (gameConfiguration.play() == true);
+			}
+			if (gameChoice.equals("8")) {
+				do {
+					do {
+						gameConfiguration.playMenu(3, gameChoice);
+						System.out.println("Option Choice ?");
+						choice = entry.next();
+						entryPass = gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getPlayOptions().size());
+					} while (entryPass == false);
+					gameConfiguration.playMenuChoice(choice);
+					while (gameConfiguration.play() == true) {
+						System.out.println("hey");
+						HelpAndRules helpandRules = new HelpAndRules();
+						helpandRules.helpAndRulesDisplay();
 
-				} while (menu.play() == true);
+						do {
+							gameConfiguration.playMenu(1, gameChoice);
+							System.out.println("Option Choice ?");
+							choice = entry.next();
+							entryPass = gameConfiguration.optionChooseCheck(choice,
+									gameConfiguration.getPlayOptions().size());
+						} while (entryPass == false);
+						gameConfiguration.playMenuChoice(choice);
+					}
+				} while (gameConfiguration.play() == true);
 			}
 
-		} while (menu.backToMain());
+		} while (gameConfiguration.backToMain() == true);
 
 	}
 

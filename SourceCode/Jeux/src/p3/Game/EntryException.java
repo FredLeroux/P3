@@ -58,9 +58,10 @@ public class EntryException extends Exception {
 	}
 
 	public EntryException(int i, int j, int entryExceptionNumber) {
-		if (entryExceptionNumber == 0)
+		if (entryExceptionNumber == 0 && i > 0)
 			System.out.println("ENTRY ERROR\nThis options number :" + i + " is unknown" + retry);
-
+		else if (i < 0)
+			System.out.println("ENTRY ERROR\nThis options do not exist " + retry);
 	}
 
 	public EntryException(String parameterName, String parameterValueRead, int minparameter, int maxparameter,

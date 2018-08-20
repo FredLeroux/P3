@@ -74,8 +74,9 @@ abstract class Configuration {
 		return keyToSet;
 	}
 
-	public void setKeyToSet(int keyToSet) {
-		this.keyToSet = keyToSet;
+	public void setKeyToSet(String keyToSet) throws EntryException {
+		int keyToSetint = stringToInteger(keyToSet);
+		this.keyToSet = keyToSetint;
 	}
 
 	public String getValueToSet() {
@@ -144,13 +145,10 @@ abstract class Configuration {
 
 	public void storeDefaultValue(LinkedHashMap<String, String> parameters) throws FileNotFoundException {
 		PrintWriter table;
-		try {
-			table = new PrintWriter(new File(this.configFile));
-			parameters.forEach((key, defaultvalue) -> table.println(key.replaceAll(" ", "_") + "=" + defaultvalue));
-			table.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		table = new PrintWriter(new File(this.configFile));
+		parameters.forEach((key, defaultvalue) -> table.println(key.replaceAll(" ", "_") + "=" + defaultvalue));
+		table.close();
+
 	}
 
 	public boolean integrityCheck() {
@@ -199,17 +197,6 @@ abstract class Configuration {
 		value = this.valueToSet;
 		if (value != null)
 			writeConfiguration(key.replaceAll(" ", "_"), value);
-	}
-
-	public boolean optionNumberCheck(int keyToSet, int optionsNumber) {
-		boolean pass = true;
-		try {
-			if (keyToSet < 1 || keyToSet > optionsNumber)
-				throw new EntryException(keyToSet, optionsNumber, 0);
-		} catch (EntryException e) {
-			pass = false;
-		}
-		return pass;
 	}
 
 	public boolean booleanConverter(String str) {
@@ -267,12 +254,15 @@ abstract class Configuration {
 		currentParameters.forEach(string -> System.out.println(string));
 	}
 
-	public int stringToInteger(String str) {
-		int integer = Integer.parseInt(str);
+	public int stringToInteger(String str) throws EntryException {
+		int integer = -1;
+		boolean pass = entryIntegerCheck(str);
+		if (pass == true)
+			integer = Integer.parseInt(str);
 		return integer;
 	}
 
-	public boolean valueRangeCheck(String valueToSet, int minParameter, int maxParameter) {
+	public boolean valueRangeCheck(String valueToSet, int minParameter, int maxParameter) throws EntryException {
 		boolean pass = true;
 		int value = stringToInteger(valueToSet);
 		if (value < minParameter || value > maxParameter)
@@ -296,6 +286,31 @@ abstract class Configuration {
 		if (itsTrue == true || itsFalse == true)
 			pass = true;
 		return pass;
+	}
+
+	public boolean optionNumberCheck(int option, int optionsNumber) {
+		boolean pass = true;
+		try {
+			if (option < 0 || option > optionsNumber)
+				throw new EntryException(option, optionsNumber, 0);
+		} catch (EntryException e) {
+			pass = false;
+		}
+		return pass;
+	}
+
+	public boolean entryIntegerCheck(String entry) throws EntryException {
+		boolean pass = true;
+
+		boolean digitOnly = entry.matches("[0-9]{" + entry.length() + "}");
+		try {
+			if (digitOnly == false)
+				throw new EntryException(entry, 2);
+		} catch (EntryException e) {
+			pass = false;
+		}
+		return pass;
+
 	}
 
 }

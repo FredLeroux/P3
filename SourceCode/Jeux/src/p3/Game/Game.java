@@ -456,19 +456,16 @@ abstract class Game extends GameParameters {
 		return pass;
 	}
 
-	public boolean entryIntegerCheck(String entry) throws EntryException {
-		boolean pass = true;
-
-		boolean digitOnly = entry.matches("[0-9]{" + entry.length() + "}");
-		try {
-			if (digitOnly == false)
-				throw new EntryException(entry, 2);
-		} catch (EntryException e) {
-			pass = false;
-		}
-		return pass;
-
-	}
+	/*
+	 * public boolean entryIntegerCheck(String entry) throws EntryException {
+	 * boolean pass = true;
+	 * 
+	 * boolean digitOnly = entry.matches("[0-9]{" + entry.length() + "}"); try { if
+	 * (digitOnly == false) throw new EntryException(entry, 2); } catch
+	 * (EntryException e) { pass = false; } return pass;
+	 * 
+	 * }
+	 */
 
 	public boolean entryIntegerRangeCheck(String entry) throws EntryException {
 		boolean pass = true;
@@ -571,7 +568,8 @@ abstract class Game extends GameParameters {
 		}
 	}
 
-	public void checkParamatersSpecificValue(int minRangeIndice, int maxRangeIndice, int elementsNbIndice) {
+	public void checkParamatersSpecificValue(int minRangeIndice, int maxRangeIndice, int elementsNbIndice)
+			throws EntryException {
 		// TODO Find a better way to treat this specific case
 		// load parameters to check validity
 		setGameParameters();
@@ -604,7 +602,7 @@ abstract class Game extends GameParameters {
 		setGameParameters();
 	}
 
-	public void setGameParameters() {
+	public void setGameParameters() throws EntryException {
 
 		setVariantVersion(booleanConverter(getProperty(parametersTxtKeys.get(0))));
 		setMinRange(stringToInteger(getProperty(parametersTxtKeys.get(1))));
