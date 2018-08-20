@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="event">
+			%d{yyyy-MM-dd HH:mm:ss} Level = *** %-5p *** at:[%t] %C{2} (from: %F ligne-> %L) message= %m%n </Property>
+	</Properties>
+	<Appenders>
+		<File name="FileLogger" filename="p3MMFleLog.log">
+			<PatternLayout pattern="${event}" />
+		</File>
+		<Console name="consoleDisplay" target="SYSTEM_OUT">
+			<PatternLayout pattern="${event}" />
+
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="consoleDisplay" level="info" />
+			<AppenderRef ref="FileLogger" level="trace" />
+		</Root>
+	</Loggers>
+
+
+</Configuration>
