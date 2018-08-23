@@ -25,10 +25,21 @@ public class Main {
 	public static String gameChoice;
 	public static String choice;
 	public static String test;
+	public static boolean devMode;
 
 	public static void main(String[] args) throws EntryException, IOException {
 
 		GameParameters gameConfiguration = new GameParameters();
+		// implementation d'un argument au lancement de l'appli. enpeche arret si pas
+		// d'argument
+		if (args.length != 0)
+			if (args[0].equals("developperModeOn"))
+				devMode = true;
+			else
+				devMode = false;
+
+		GameParameters.setDevMode(devMode);
+
 		gameConfiguration.readConfiguration();
 		gameConfiguration.arrayListDisplay(gameConfiguration.getAppHead());
 		do {
@@ -50,9 +61,9 @@ public class Main {
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
 								gameConfiguration.getPlayOptions().size());
-					} while (entryPass == false);
+					} while (!entryPass);
 					gameConfiguration.playMenuChoice(choice);
-					while (gameConfiguration.play() == true) {
+					while (gameConfiguration.play()) {
 						MoreLess moreLess = new MoreLess();
 						moreLess.setChallengerMode(1);
 						moreLess.setCode();
@@ -67,7 +78,7 @@ public class Main {
 										"Please enter your proposition n°= " + moreLess.getHit());
 								moreLess.setOpEntry(entry.next());
 								entryPass = moreLess.opEntryCodeCheck();
-							} while (entryPass == false);
+							} while (!entryPass);
 							moreLess.setOpProposal(moreLess.getOpEntry());
 							moreLess.comparison(moreLess.getCode(), moreLess.getOpProposal());
 							moreLess.setHistoric(moreLess.getOpProposal(), moreLess.getHit());
@@ -77,7 +88,7 @@ public class Main {
 								System.out.println(moreLess.getGameAnswer());
 							}
 							end = moreLess.gameStatu();
-						} while (end == false);
+						} while (!end);
 						moreLess.Summary();
 						do {
 							gameConfiguration.subMenu(1, gameChoice);
@@ -85,11 +96,11 @@ public class Main {
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
 									gameConfiguration.getPlayOptions().size());
-						} while (entryPass == false);
+						} while (!entryPass);
 						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (gameConfiguration.play() == true);
+				} while (gameConfiguration.play());
 			}
 			if (gameChoice.equals("2")) {
 				do {
@@ -99,9 +110,9 @@ public class Main {
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
 								gameConfiguration.getPlayOptions().size());
-					} while (entryPass == false);
+					} while (!entryPass);
 					gameConfiguration.playMenuChoice(choice);
-					while (gameConfiguration.play() == true) {
+					while (gameConfiguration.play()) {
 						Mastermind masterMind = new Mastermind();
 						masterMind.setChallengerMode(1);
 						masterMind.setCode();
@@ -116,7 +127,7 @@ public class Main {
 										"Please enter your proposition n°= " + masterMind.getHit());
 								masterMind.setOpEntry(entry.next());
 								entryPass = masterMind.opEntryCodeCheck();
-							} while (entryPass == false);
+							} while (!entryPass);
 							masterMind.setOpProposal(masterMind.getOpEntry());
 							masterMind.comparison(masterMind.getCode(), masterMind.getOpProposal());
 							masterMind.setHistoric(masterMind.getOpProposal(), masterMind.getHit());
@@ -126,7 +137,7 @@ public class Main {
 								System.out.println(masterMind.getGameAnswer());
 							}
 							end = masterMind.gameStatu();
-						} while (end == false);
+						} while (!end);
 						masterMind.Summary();
 						do {
 							gameConfiguration.subMenu(1, gameChoice);
@@ -134,11 +145,11 @@ public class Main {
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
 									gameConfiguration.getPlayOptions().size());
-						} while (entryPass == false);
+						} while (!entryPass);
 						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (gameConfiguration.play() == true);
+				} while (gameConfiguration.play());
 			}
 			if (gameChoice.equals("3")) {
 				do {
@@ -148,16 +159,16 @@ public class Main {
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
 								gameConfiguration.getPlayOptions().size());
-					} while (entryPass == false);
+					} while (!entryPass);
 					gameConfiguration.playMenuChoice(choice);
-					while (gameConfiguration.play() == true) {
+					while (gameConfiguration.play()) {
 						MoreLess mLDefender = new MoreLess();
 						mLDefender.setChallengerMode(0);
 						do {
 							System.out.println("set your code");
 							mLDefender.setOpEntry(entry.next());
 							entryPass = mLDefender.opEntryCodeCheck();
-						} while (entryPass == false);
+						} while (!entryPass);
 						mLDefender.setOpCode(mLDefender.getOpEntry());
 
 						do {
@@ -167,7 +178,7 @@ public class Main {
 							do {
 								do {
 									mLDefender.tableDisplay(mLDefender.getPreviousHit());
-									if (mLDefender.isAutoMode() == false) {
+									if (!mLDefender.isAutoMode()) {
 										mLDefender.AskOpClues(mLDefender.getOpCode(), mLDefender.getPcProposal(),
 												"Enter your clues on this proposition : ");
 										mLDefender.setOpEntry(entry.next());
@@ -176,12 +187,12 @@ public class Main {
 										mLDefender.comparison(mLDefender.getOpCode(), mLDefender.getPcProposal());
 										mLDefender.setOpEntry(mLDefender.answerToString());
 									}
-								} while (entryPass == false);
+								} while (!entryPass);
 								mLDefender.setMLClues(mLDefender.getOpEntry());
 								cheat = mLDefender.cheatTentative(mLDefender.getOpCode(), mLDefender.getPcProposal());
-								if (cheat == true)
+								if (cheat)
 									System.out.println(mLDefender.cheatWarning());
-								if (mLDefender.isAutoMode() == false && mLDefender.isCheating() == false) {
+								if (!mLDefender.isAutoMode() && !mLDefender.isCheating()) {
 									if (!mLDefender.getPcProposal().equals(mLDefender.getOpCode())) {
 										mLDefender.setGameAnswer();
 									}
@@ -192,22 +203,22 @@ public class Main {
 									mLDefender.setHistoric(mLDefender.getPcProposal(), mLDefender.getHit());
 								}
 
-							} while (cheat == true);
+							} while (cheat);
 
 							end = mLDefender.gameStatu();
-						} while (end == false);
+						} while (!end);
 
 						mLDefender.Summary();
 						do {
 							gameConfiguration.subMenu(1, gameChoice);
 							System.out.println("Option Choice ?");
 							choice = entry.next();
-						} while (gameConfiguration.optionChooseCheck(choice,
-								gameConfiguration.getPlayOptions().size()) == false);
+						} while (!gameConfiguration.optionChooseCheck(choice,
+								gameConfiguration.getPlayOptions().size()));
 						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (gameConfiguration.play() == true);
+				} while (gameConfiguration.play());
 			}
 			if (gameChoice.equals("4")) {
 				do {
@@ -215,17 +226,16 @@ public class Main {
 						gameConfiguration.subMenu(0, gameChoice);
 						System.out.println("Option Choice ?");
 						choice = entry.next();
-					} while (gameConfiguration.optionChooseCheck(choice,
-							gameConfiguration.getPlayOptions().size()) == false);
+					} while (!gameConfiguration.optionChooseCheck(choice, gameConfiguration.getPlayOptions().size()));
 					gameConfiguration.playMenuChoice(choice);
-					while (gameConfiguration.play() == true) {
+					while (gameConfiguration.play()) {
 						Mastermind mastermindDfndr = new Mastermind();
 						mastermindDfndr.setChallengerMode(0);
 						do {
 							System.out.println("set your code");
 							mastermindDfndr.setOpEntry(entry.next());
 							entryPass = mastermindDfndr.opEntryCodeCheck();
-						} while (entryPass == false);
+						} while (!entryPass);
 						mastermindDfndr.setOpCode(mastermindDfndr.getOpEntry());
 
 						do {
@@ -234,14 +244,14 @@ public class Main {
 
 							do {
 								mastermindDfndr.tableDisplay(mastermindDfndr.getPreviousHit());
-								if (mastermindDfndr.isAutoMode() == false) {
+								if (!mastermindDfndr.isAutoMode()) {
 									do {
 										mastermindDfndr.AskOpClues(mastermindDfndr.getOpCode(),
 												mastermindDfndr.getPcProposal(),
 												"Enter the Right placed element(s) number: ");
 										mastermindDfndr.setOpEntry(entry.next());
 										entryPass = mastermindDfndr.entryIntegerCheck(mastermindDfndr.getOpEntry());
-									} while (entryPass == false);
+									} while (!entryPass);
 									mastermindDfndr.setClueRightPlaced(mastermindDfndr.getOpEntry());
 									do {
 										mastermindDfndr.AskOpClues(mastermindDfndr.getOpCode(),
@@ -249,7 +259,7 @@ public class Main {
 												"Enter the Present element(s) number: ");
 										mastermindDfndr.setOpEntry(entry.next());
 										entryPass = mastermindDfndr.entryIntegerCheck(mastermindDfndr.getOpEntry());
-									} while (entryPass == false);
+									} while (!entryPass);
 									mastermindDfndr.setClueElmentPresent(mastermindDfndr.getOpEntry());
 								} else {
 									mastermindDfndr.comparison(mastermindDfndr.getOpCode(),
@@ -262,9 +272,9 @@ public class Main {
 
 								cheat = mastermindDfndr.cheatTentative(mastermindDfndr.getOpCode(),
 										mastermindDfndr.getPcProposal());
-								if (cheat == true)
+								if (cheat)
 									System.out.println(mastermindDfndr.cheatWarning());
-								if (mastermindDfndr.isAutoMode() == false && mastermindDfndr.isCheating() == false) {
+								if (!mastermindDfndr.isAutoMode() && !mastermindDfndr.isCheating()) {
 									if (!mastermindDfndr.getPcProposal().equals(mastermindDfndr.getOpCode())) {
 										mastermindDfndr.setGameAnswer();
 									}
@@ -277,10 +287,10 @@ public class Main {
 											mastermindDfndr.getHit());
 								}
 
-							} while (mastermindDfndr.isCheatTentative() == true);
+							} while (mastermindDfndr.isCheatTentative());
 
 							end = mastermindDfndr.gameStatu();
-						} while (end == false);
+						} while (!end);
 
 						mastermindDfndr.Summary();
 						do {
@@ -289,11 +299,11 @@ public class Main {
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
 									gameConfiguration.getPlayOptions().size());
-						} while (entryPass == false);
+						} while (!entryPass);
 						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (gameConfiguration.play() == true);
+				} while (gameConfiguration.play());
 			}
 			if (gameChoice.equals("5")) {
 				do {
@@ -303,9 +313,9 @@ public class Main {
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
 								gameConfiguration.getPlayOptions().size());
-					} while (entryPass == false);
+					} while (!entryPass);
 					gameConfiguration.playMenuChoice(choice);
-					while (gameConfiguration.play() == true) {
+					while (gameConfiguration.play()) {
 						MoreLess mLDuel = new MoreLess();
 						mLDuel.setDuelMode(1);
 						mLDuel.setChallengerMode(1);
@@ -350,7 +360,7 @@ public class Main {
 									mLDuel.setPreviousHit("Pc previous proposition : ");
 									mLDuel.tableDisplay(mLDuel.getPreviousHit());
 
-									if (mLDuel.isAutoMode() == false) {
+									if (!mLDuel.isAutoMode()) {
 										mLDuel.AskOpClues(mLDuel.getOpCode(), mLDuel.getPcProposal(),
 												"Please enter your clues on this proposition : ");
 										mLDuel.setOpEntry(entry.next());
@@ -359,25 +369,25 @@ public class Main {
 										mLDuel.comparison(mLDuel.getOpCode(), mLDuel.getPcProposal());
 										mLDuel.setOpEntry(mLDuel.answerToString());
 									}
-								} while (entryPass == false);
+								} while (!entryPass);
 								mLDuel.setMLClues(mLDuel.getOpEntry());
 								cheat = mLDuel.cheatTentative(mLDuel.getOpCode(), mLDuel.getPcProposal());
-								if (cheat == true)
+								if (cheat)
 									System.out.println(mLDuel.cheatWarning());
-								if (mLDuel.isAutoMode() == false && mLDuel.isCheating() == false) {
+								if (!mLDuel.isAutoMode() && !mLDuel.isCheating()) {
 									if (!mLDuel.getPcProposal().equals(mLDuel.getOpCode())) {
 										mLDuel.setGameAnswer();
 									}
 									mLDuel.setHistoric(mLDuel.getPcProposal(), mLDuel.getHit());
-									if (mLDuel.codeEquivalenceCheck(mLDuel.getCode(), mLDuel.getOpProposal()) == false)
+									if (!mLDuel.codeEquivalenceCheck(mLDuel.getCode(), mLDuel.getOpProposal()))
 										System.out.println(mLDuel.getGameAnswer());
 								} else {
 									mLDuel.setHistoric(mLDuel.getPcProposal(), mLDuel.getHit());
 								}
-							} while (mLDuel.isCheatTentative() == true);
+							} while (mLDuel.isCheatTentative());
 
 							end = mLDuel.gameStatu();
-						} while (end == false);
+						} while (!end);
 
 						mLDuel.Summary();
 						do {
@@ -386,11 +396,11 @@ public class Main {
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
 									gameConfiguration.getPlayOptions().size());
-						} while (entryPass == false);
+						} while (!entryPass);
 						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (gameConfiguration.play() == true);
+				} while (gameConfiguration.play());
 			}
 			if (gameChoice.equals("6")) {
 				do {
@@ -400,9 +410,9 @@ public class Main {
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
 								gameConfiguration.getPlayOptions().size());
-					} while (entryPass == false);
+					} while (!entryPass);
 					gameConfiguration.playMenuChoice(choice);
-					while (gameConfiguration.play() == true) {
+					while (gameConfiguration.play()) {
 						Mastermind mastermindDuel = new Mastermind();
 						mastermindDuel.setDuelMode(1);
 						mastermindDuel.setChallengerMode(1);
@@ -448,14 +458,14 @@ public class Main {
 								mastermindDuel.setPreviousHit("Pc previous proposition : ");
 								mastermindDuel.tableDisplay(mastermindDuel.getPreviousHit());
 
-								if (mastermindDuel.isAutoMode() == false) {
+								if (!mastermindDuel.isAutoMode()) {
 									do {
 										mastermindDuel.AskOpClues(mastermindDuel.getOpCode(),
 												mastermindDuel.getPcProposal(),
 												"Enter the Right placed element(s) number: ");
 										mastermindDuel.setOpEntry(entry.next());
 										entryPass = mastermindDuel.entryIntegerCheck(mastermindDuel.getOpEntry());
-									} while (entryPass == false);
+									} while (!entryPass);
 									mastermindDuel.setClueRightPlaced(mastermindDuel.getOpEntry());
 									do {
 										mastermindDuel.AskOpClues(mastermindDuel.getOpCode(),
@@ -463,7 +473,7 @@ public class Main {
 												"Enter the Present element(s) number: ");
 										mastermindDuel.setOpEntry(entry.next());
 										entryPass = mastermindDuel.entryIntegerCheck(mastermindDuel.getOpEntry());
-									} while (entryPass == false);
+									} while (!entryPass);
 									mastermindDuel.setClueElmentPresent(mastermindDuel.getOpEntry());
 								} else {
 									mastermindDuel.comparison(mastermindDuel.getOpCode(),
@@ -475,23 +485,23 @@ public class Main {
 								}
 								cheat = mastermindDuel.cheatTentative(mastermindDuel.getOpCode(),
 										mastermindDuel.getPcProposal());
-								if (cheat == true)
+								if (cheat)
 									System.out.println(mastermindDuel.cheatWarning());
-								if (mastermindDuel.isAutoMode() == false && mastermindDuel.isCheating() == false) {
+								if (!mastermindDuel.isAutoMode() && !mastermindDuel.isCheating()) {
 									if (!mastermindDuel.getPcProposal().equals(mastermindDuel.getOpCode())) {
 										mastermindDuel.setGameAnswer();
 									}
 									mastermindDuel.setHistoric(mastermindDuel.getPcProposal(), mastermindDuel.getHit());
-									if (mastermindDuel.codeEquivalenceCheck(mastermindDuel.getCode(),
-											mastermindDuel.getOpProposal()) == false)
+									if (!mastermindDuel.codeEquivalenceCheck(mastermindDuel.getCode(),
+											mastermindDuel.getOpProposal()))
 										System.out.println(mastermindDuel.getGameAnswer());
 								} else {
 									mastermindDuel.setHistoric(mastermindDuel.getPcProposal(), mastermindDuel.getHit());
 								}
-							} while (mastermindDuel.isCheatTentative() == true);
+							} while (mastermindDuel.isCheatTentative());
 
 							end = mastermindDuel.gameStatu();
-						} while (end == false);
+						} while (!end);
 
 						mastermindDuel.Summary();
 						do {
@@ -500,11 +510,11 @@ public class Main {
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
 									gameConfiguration.getPlayOptions().size());
-						} while (entryPass == false);
+						} while (!entryPass);
 						gameConfiguration.playMenuChoice(choice);
 					}
 
-				} while (gameConfiguration.play() == true);
+				} while (gameConfiguration.play());
 			}
 
 			if (gameChoice.equals("7")) {
@@ -518,7 +528,7 @@ public class Main {
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
 								gameConfiguration.getConfigurationOptions().size());
-					} while (entryPass == false);
+					} while (!entryPass);
 					gameConfiguration.setKeyToSet(choice);
 					gameConfiguration.appQuit(choice);
 					if (choice.equals("9")) {
@@ -545,10 +555,10 @@ public class Main {
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
 									gameConfiguration.getPlayOptions().size());
-						} while (entryPass == false);
+						} while (!entryPass);
 						gameConfiguration.playMenuChoice(choice);
 					}
-				} while (gameConfiguration.play() == true);
+				} while (gameConfiguration.play());
 			}
 			if (gameChoice.equals("8")) {
 				do {
@@ -558,10 +568,9 @@ public class Main {
 						choice = entry.next();
 						entryPass = gameConfiguration.optionChooseCheck(choice,
 								gameConfiguration.getPlayOptions().size());
-					} while (entryPass == false);
+					} while (!entryPass);
 					gameConfiguration.playMenuChoice(choice);
-					while (gameConfiguration.play() == true) {
-						System.out.println("hey");
+					while (gameConfiguration.play()) {
 						HelpAndRules helpandRules = new HelpAndRules();
 						helpandRules.helpAndRulesDisplay();
 
@@ -571,13 +580,13 @@ public class Main {
 							choice = entry.next();
 							entryPass = gameConfiguration.optionChooseCheck(choice,
 									gameConfiguration.getPlayOptions().size());
-						} while (entryPass == false);
+						} while (!entryPass);
 						gameConfiguration.playMenuChoice(choice);
 					}
-				} while (gameConfiguration.play() == true);
+				} while (gameConfiguration.play());
 			}
 
-		} while (gameConfiguration.backToMain() == true);
+		} while (gameConfiguration.backToMain());
 
 	}
 

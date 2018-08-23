@@ -297,7 +297,7 @@ public abstract class P3Menu extends Configuration {
 		boolean pass = true;
 		testresults.add(optionNumberCheck(choiceint, optionNumberAvaiable));
 		boolean failed = testresults.contains(false);
-		if (failed == true)
+		if (failed)
 			pass = false;
 		return pass;
 	}

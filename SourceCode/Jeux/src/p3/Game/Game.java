@@ -23,7 +23,7 @@ abstract class Game extends GameParameters {
 	private int maxMinRange = 8;
 	private int minMaxRange = 1;
 	private int maxMaxRange = 9;
-	private int[] booleanIndiceList = { 0, 5, 6 };
+	private int[] booleanIndiceList = { 0, 5 };
 	private int[] IntegerIndiceList = { 1, 2, 3, 4 };
 	private String code = null;
 	private String gameAnswer = null;
@@ -34,7 +34,7 @@ abstract class Game extends GameParameters {
 	protected boolean duplicate = false;
 	protected boolean challengerMode = true;
 	protected boolean cheatTentative = false;
-	protected boolean devMode;
+
 	protected boolean autoMode;
 	protected boolean variantVersion;
 	protected int cheatCount = 0;
@@ -277,13 +277,13 @@ abstract class Game extends GameParameters {
 		traceMethodLogger(0, "setCode");
 		String codetoCheck = null;
 		Code code = new Code(this.minRange, this.maxRange, this.elementsNb);
-		if (this.challengerMode == true) {
-			if (this.variantVersion == false) {
+		if (this.challengerMode) {
+			if (!this.variantVersion) {
 				do {
 					Code basiscode = new Code(this.minRange, this.maxRange, this.elementsNb);
 					codetoCheck = basiscode.toString();
 					avoidDuplicate(codetoCheck, this.elementsNb);
-				} while (this.duplicate == true);
+				} while (this.duplicate);
 				this.code = codetoCheck;
 			} else {
 				this.code = code.toString();
@@ -331,7 +331,7 @@ abstract class Game extends GameParameters {
 		ArrayList<String> askOpPrpoposition = new ArrayList<>();
 		askOpPrpoposition.add("\nPlayer as Challenger");
 		askOpPrpoposition.add(question);
-		if (this.devMode == true)
+		if (GameParameters.devMode)
 			askOpPrpoposition.add("(The Secret Code is : " + secretcode + ")");
 		askOpPrpoposition.forEach(elmt -> System.out.println(elmt));
 		traceMethodLogger(1, "AskOpProposition");
@@ -358,7 +358,7 @@ abstract class Game extends GameParameters {
 		askOpclues.add("Your secret code is : " + opCode);
 		askOpclues.add("Pc proposition      : " + pcProposition);
 		askOpclues.add(question);
-		if (this.autoMode == false)
+		if (!this.autoMode)
 			askOpclues.forEach(elmt -> System.out.println(elmt));
 		traceMethodLogger(1, "AskOpClues");
 
@@ -377,7 +377,7 @@ abstract class Game extends GameParameters {
 		traceMethodLogger(0, "setPreviousHit");
 		ArrayList<String> previousHit = new ArrayList<>();
 
-		if (this.challengerMode == true) {
+		if (this.challengerMode) {
 			if (this.historicChallengerTbl.size() == 0)
 				previousHit.clear();
 			else {
@@ -406,7 +406,7 @@ abstract class Game extends GameParameters {
 	public void Summary() {
 		traceMethodLogger(0, "Summary");
 		Conclusion();
-		if (duelMode == false) {
+		if (!duelMode) {
 			setPreviousHit("\nGame Summary");
 			tableDisplay(getPreviousHit());
 		} else {
@@ -438,7 +438,7 @@ abstract class Game extends GameParameters {
 	 */
 	public void setGameAnswer() {
 		traceMethodLogger(0, "setGameAnswer");
-		if (challengerMode == true) {
+		if (challengerMode) {
 			if (opProposal.equals(code))
 				this.gameAnswer = "\n!!!!YOU MAY HAVE WIN!!!!\nIt seems that you have found the Pc secret code, lets check if Pc has found yours.\n";
 			else
@@ -462,7 +462,7 @@ abstract class Game extends GameParameters {
 		traceMethodLogger(0, "codeEquivalenceCheck");
 		boolean equal = false;
 		boolean equality = code.equals(codeToCompare);
-		if (equality == true)
+		if (equality)
 			equal = true;
 		traceMethodLogger(1, "codeEquivalenceCheck");
 		return equal;
@@ -494,20 +494,20 @@ abstract class Game extends GameParameters {
 		ArrayList<Boolean> gameStatuResults = new ArrayList<>();
 		boolean end = false;
 		boolean endItsTrue = false;
-		if (this.cheating == true)
+		if (this.cheating)
 			end = true;
 		else {
 			gameStatuResults.add(hitCheck());
-			if (this.duelMode == true) {
+			if (this.duelMode) {
 				gameStatuResults.add(codeEquivalenceCheck(this.opProposal, this.code));
 				gameStatuResults.add(codeEquivalenceCheck(this.opCode, this.pcProposal));
-			} else if (this.challengerMode == true)
+			} else if (this.challengerMode)
 				gameStatuResults.add(codeEquivalenceCheck(this.opProposal, this.code));
 			else
 				gameStatuResults.add(codeEquivalenceCheck(this.opCode, this.pcProposal));
 
 			endItsTrue = gameStatuResults.contains(true);
-			if (endItsTrue == true)
+			if (endItsTrue)
 				end = true;
 		}
 		traceMethodLogger(1, "gameStatu");
@@ -524,11 +524,11 @@ abstract class Game extends GameParameters {
 		traceMethodLogger(0, "Conclusion");
 		ArrayList<String> summary = new ArrayList<>();
 		String comment = null;
-		if (this.cheating == true) {
+		if (this.cheating) {
 			comment = "\n????!!Who cheat loose!!??? \nThree cheating tentatives";
 		} else {
-			if (this.duelMode == false) {
-				if (this.challengerMode == true) {
+			if (!this.duelMode) {
+				if (this.challengerMode) {
 
 					if (this.opProposal.equals(this.code)) {
 						comment = "\n!!!!CONGRATULATION YOU WIN!!!!\nYou managed to find Pc secret code which was : "
@@ -537,7 +537,7 @@ abstract class Game extends GameParameters {
 						comment = "\n????SORRY YOU LOOSE???\nYou did not find Pc secret code which was : " + this.code;
 					}
 				}
-				if (this.challengerMode == false) {
+				if (!this.challengerMode) {
 
 					if (this.pcProposal.equals(this.opCode)) {
 						comment = "\n????SORRY YOU LOOSE???\nPc managed to find your secret code which was : "
@@ -583,8 +583,7 @@ abstract class Game extends GameParameters {
 		setMaxRange(stringToInteger(getProperty(parametersTxtKeys.get(2))));
 		setElementsNb(stringToInteger(getProperty(parametersTxtKeys.get(3))));
 		setMaxHit(stringToInteger(getProperty(parametersTxtKeys.get(4))));
-		setDevmode(booleanConverter(getProperty(parametersTxtKeys.get(5))));
-		setAutoMode(booleanConverter(getProperty(parametersTxtKeys.get(6))));
+		setAutoMode(booleanConverter(getProperty(parametersTxtKeys.get(5))));
 		traceMethodLogger(1, "setGameParameters");
 	}
 
@@ -653,7 +652,7 @@ abstract class Game extends GameParameters {
 		boolean pass = true;
 		boolean RangeCheck = entry.matches("[" + this.minRange + "-" + this.maxRange + "]{" + entry.length() + "}");
 		try {
-			if (RangeCheck == false)
+			if (!RangeCheck)
 				throw new EntryException(entry, 4);
 		} catch (EntryException e) {
 			pass = false;
@@ -673,9 +672,9 @@ abstract class Game extends GameParameters {
 		traceMethodLogger(0, "entryDuplicateCheck");
 		boolean pass = true;
 		try {
-			if (this.variantVersion == false)
+			if (!this.variantVersion)
 				avoidDuplicate(entry, entry.length());
-			if (this.duplicate == true)
+			if (this.duplicate)
 				throw new EntryException(this.opEntry, 3);
 		} catch (EntryException e) {
 			pass = false;
@@ -704,7 +703,7 @@ abstract class Game extends GameParameters {
 		}
 		boolean containsOnly = entry.matches("[" + regexSb.toString() + "]{" + entry.length() + "}");
 		try {
-			if (containsOnly == false)
+			if (!containsOnly)
 				throw new EntryException(entry, contains);
 		} catch (EntryException e) {
 			pass = false;
@@ -727,12 +726,12 @@ abstract class Game extends GameParameters {
 		testresults.add(entryCheckLength(this.opEntry, this.elementsNb));
 		testresults.add(entryIntegerCheck(this.opEntry));
 		testresults.add(entryIntegerRangeCheck(this.opEntry));
-		if (this.challengerMode == false) {
+		if (!this.challengerMode) {
 			testresults.add(entryDuplicateCheck(this.opEntry));
 		}
 
 		boolean failed = testresults.contains(false);
-		if (failed == true)
+		if (failed)
 			pass = false;
 		traceMethodLogger(1, "opEntryCodeCheck");
 		return pass;
@@ -764,7 +763,7 @@ abstract class Game extends GameParameters {
 			setParametersInfo(indiceList[i]);
 
 			try {
-				if (valueBooleanCheck(this.parameterCurrentValue) == false)
+				if (!valueBooleanCheck(this.parameterCurrentValue))
 					throw new EntryException(this.parameterKey, this.parameterCurrentValue, 0);
 			} catch (EntryException e0) {
 				writeConfiguration(this.parameterKey, this.parameterDefaultValue);
@@ -785,7 +784,7 @@ abstract class Game extends GameParameters {
 			setParametersInfo(indiceList[i]);
 
 			try {
-				if (valueIntegerCheck(this.parameterCurrentValue) == false)
+				if (!valueIntegerCheck(this.parameterCurrentValue))
 					throw new EntryException(this.parameterKey, this.parameterCurrentValue, 1);
 			} catch (EntryException e1) {
 				writeConfiguration(this.parameterKey, this.parameterDefaultValue);
@@ -815,7 +814,7 @@ abstract class Game extends GameParameters {
 		setGameParameters();
 		try {
 			setParametersInfo(minRangeIndice);
-			if (valueRangeCheck(this.parameterCurrentValue, this.minMinRange, this.maxMinRange) == false
+			if (!valueRangeCheck(this.parameterCurrentValue, this.minMinRange, this.maxMinRange)
 					|| stringToInteger(this.parameterCurrentValue) >= this.maxRange)
 				throw new EntryException(this.parameterKey, this.parameterCurrentValue, this.minMinRange,
 						this.maxMinRange, 0);
@@ -825,7 +824,7 @@ abstract class Game extends GameParameters {
 		try {
 			setParametersInfo(maxRangeIndice);
 			;
-			if (valueRangeCheck(this.parameterCurrentValue, this.minMaxRange, this.maxMaxRange) == false
+			if (!valueRangeCheck(this.parameterCurrentValue, this.minMaxRange, this.maxMaxRange)
 					|| stringToInteger(this.parameterCurrentValue) <= this.minRange)
 				throw new EntryException(this.parameterKey, this.parameterCurrentValue, this.minMaxRange,
 						this.maxMaxRange, 1);
@@ -834,7 +833,7 @@ abstract class Game extends GameParameters {
 		}
 		try {
 			setParametersInfo(elementsNbIndice);
-			if (stringToInteger(this.parameterCurrentValue) > this.maxRange && this.isVariantVersion() == false)
+			if (stringToInteger(this.parameterCurrentValue) > this.maxRange && !this.isVariantVersion())
 				throw new EntryException(this.parameterKey, this.parameterCurrentValue, 2);
 		} catch (EntryException e4) {
 			setParametersInfo(0);

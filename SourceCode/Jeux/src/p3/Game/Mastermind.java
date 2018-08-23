@@ -100,7 +100,7 @@ public class Mastermind extends Game {
 			code = String.format("%0" + this.elementsNb + "d", codeListElmt++);
 			if (this.variantVersion == false) {
 				avoidDuplicate(code, this.elementsNb);
-				if (this.duplicate == true)
+				if (this.duplicate)
 					continue;
 				else
 					codeList.add(code);
@@ -136,12 +136,6 @@ public class Mastermind extends Game {
 		}
 		traceMethodLogger(1, "pcProposition");
 		return this.pcProposal = this.possibilitiesList.get(getRandom(0, (this.possibilitiesList.size() - 1)));
-		// causse a codeliste size at 0 is an empty codelist and not a codelits with 1
-		// elment so to avoid bug -1 //to be clear a codelist with 1 string have a size
-		// of
-		// 1 so random can be 1 but with a size of 1 the first element is at the entry
-		// zero so if random is 1 we will ask for codelist.get(1) but doesn't exist the
-		// first place is 0 so whith -1 we will never have issue again
 
 	}
 
@@ -162,11 +156,6 @@ public class Mastermind extends Game {
 
 		for (int i = 0; i < this.possibilitiesList.size(); i++) {
 			secretCodePossible = this.possibilitiesList.get(i);
-			// secret code est un des code de la liste car concraitement
-			// on compare un code à un code dela liste donc il faut garder le
-			// meme sens pour etre plus claire on etablie les clue en
-			// faisant pcentry versus opcode don on dois faire pcentry
-			// versus un des code dela liste qui contient le opcode
 			comparison(pcProposal, secretCodePossible);
 			if (!(this.clueRightPlaced == this.nbRightPlaced && this.clueElmentPresent == this.nbPresent)) {
 				this.possibilitiesList.remove(secretCodePossible);
@@ -254,12 +243,12 @@ public class Mastermind extends Game {
 		traceMethodLogger(0, "setHistoric");
 
 		String comment = null;
-		if (this.cheatTentative == true && this.cheatCount > 0 || this.cheating == true) {
+		if (this.cheatTentative && this.cheatCount > 0 || this.cheating) {
 			comment = "(Player cheating tentative or entry error).";
 		} else {
 			comment = " .";
 		}
-		if (this.challengerMode == true)
+		if (this.challengerMode)
 			this.historicChallengerTbl.add("Your proposition n°= " + String.format("%0" + 2 + "d", getHit) + " was : "
 					+ codeProposal + " || The PC clues on this proposition are " + "Right placed element(s) number is "
 					+ "{ " + this.nbRightPlaced + " }" + " Present element(s) number is " + "{ " + this.nbPresent + " }"

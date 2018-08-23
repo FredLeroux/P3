@@ -18,6 +18,7 @@ public class GameParameters extends P3Menu {
 	/// Variables declaration
 	private LinkedHashMap<String, String> gameParameters;
 	private static final Logger PARAMETERS_LOGGER = LogManager.getLogger(GameParameters.class.getName());
+	protected static boolean devMode;
 	// -----------------------------------------------------------------------------------------------------------------------------------------------------
 	// Variables Getter an Setter
 
@@ -27,6 +28,14 @@ public class GameParameters extends P3Menu {
 
 	public void setGameParameters(LinkedHashMap<String, String> gameParameters) {
 		this.gameParameters = gameParameters;
+	}
+
+	public static boolean isDevMode() {
+		return devMode;
+	}
+
+	public static void setDevMode(boolean devMode) {
+		GameParameters.devMode = devMode;
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -52,7 +61,6 @@ public class GameParameters extends P3Menu {
 		this.gameParameters.put("Digits Maximum Range", "9");
 		this.gameParameters.put("Element(s) Number Composing Secret Code", "4");
 		this.gameParameters.put("Maximum Hit Attributed", "20");
-		this.gameParameters.put("Developper Mode", "false");
 		this.gameParameters.put("Defender Auto Mode", "false");
 		setParamatersList(this.gameParameters);
 		createParameterKeysList(this.gameParameters);

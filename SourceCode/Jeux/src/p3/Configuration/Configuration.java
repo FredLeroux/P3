@@ -179,7 +179,7 @@ abstract class Configuration {
 			pass = false;
 		}
 		try {
-			if (pass == false)
+			if (!pass)
 				throw new EntryException(new FileNotFoundException());
 		} catch (EntryException e0) {
 			createtxt();
@@ -195,7 +195,7 @@ abstract class Configuration {
 		try {
 
 			boolean integrity = integrityCheck();
-			if (integrity == false) {
+			if (!integrity) {
 				throw new EntryException("Compromised File Integrity", 5);
 			}
 		} catch (EntryException e1) {
@@ -364,7 +364,7 @@ abstract class Configuration {
 		traceMethodLogger(0, "stringToInteger");
 		int integer = -1;
 		boolean pass = entryIntegerCheck(str);
-		if (pass == true)
+		if (pass)
 			integer = Integer.parseInt(str);
 		traceMethodLogger(1, "stringToInteger");
 		return integer;
@@ -400,7 +400,7 @@ abstract class Configuration {
 		traceMethodLogger(0, "valueIntegerCheck");
 		boolean pass = true;
 		boolean digitOnly = valueToSet.matches("[0-9]{" + valueToSet.length() + "}");
-		if (digitOnly == false)
+		if (!digitOnly)
 			pass = false;
 		traceMethodLogger(1, "valueIntegerCheck");
 		return pass;
@@ -416,7 +416,7 @@ abstract class Configuration {
 		boolean pass = false;
 		boolean itsTrue = booleanValue.equalsIgnoreCase("true");
 		boolean itsFalse = booleanValue.equalsIgnoreCase("false");
-		if (itsTrue == true || itsFalse == true)
+		if (itsTrue || itsFalse)
 			pass = true;
 		traceMethodLogger(1, "valueBooleanCheck");
 		return pass;
@@ -434,7 +434,7 @@ abstract class Configuration {
 
 		boolean digitOnly = entry.matches("[0-9]{" + entry.length() + "}");
 		try {
-			if (digitOnly == false)
+			if (!digitOnly)
 				throw new EntryException(entry, 2);
 		} catch (EntryException e) {
 			pass = false;

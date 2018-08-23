@@ -184,14 +184,14 @@ public class MoreLess extends Game {
 		String comment = null;
 		String answer = null;
 
-		if (cheatTentative == true && cheatCount > 0 || cheating == true)
+		if (cheatTentative && cheatCount > 0 || cheating)
 			comment = "(Player cheating tentative or entry error).";
 
 		else {
 			comment = " .";
 
 		}
-		if (challengerMode == true) {
+		if (challengerMode) {
 			answer = answerToString();
 			historicChallengerTbl.add("Your proposition n°= " + String.format("%0" + 2 + "d", getHit) + " was : "
 					+ codeProposal + " || The PC clues on this proposition are " + answer + comment);
