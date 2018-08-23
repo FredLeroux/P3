@@ -25,7 +25,7 @@ public class Main {
 	public static String gameChoice;
 	public static String choice;
 	public static String test;
-	public static boolean devMode;
+	public static boolean devMode = false;
 
 	public static void main(String[] args) throws EntryException, IOException {
 

@@ -1,1 +1,1 @@
-java -jar P3FLE.jar
+java -jar P3FLE.jar developperModeOn

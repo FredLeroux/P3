@@ -331,7 +331,7 @@ abstract class Game extends GameParameters {
 		ArrayList<String> askOpPrpoposition = new ArrayList<>();
 		askOpPrpoposition.add("\nPlayer as Challenger");
 		askOpPrpoposition.add(question);
-		if (GameParameters.devMode)
+		if (GameParameters.devMode == true)
 			askOpPrpoposition.add("(The Secret Code is : " + secretcode + ")");
 		askOpPrpoposition.forEach(elmt -> System.out.println(elmt));
 		traceMethodLogger(1, "AskOpProposition");
